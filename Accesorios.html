@@ -14,6 +14,14 @@
         background-color: #121212;
         color: white;
       }
+      .video-background {
+        width:100%;
+        height:100%;
+        overflow:hidden;
+        display:flex;
+        justify-content:center;
+        background-position: 100px, 30px;
+}
       
     </style>
 
@@ -22,9 +30,11 @@
 
    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <video style="z-index: -1; position: fixed; height:100%;" autoplay muted loop id="background">
-      <source src="Img/background.mp4" type="video/mp4">
+    <div class="video-background">
+    <video style="z-index: -1; position: fixed;" autoplay muted loop id="background">
+      <source src="Img/background-fixed.mp4" type="video/mp4">
     </video>
+  </div>
 
     <!--navbar y contenido-->
     <nav class="navbar navbar-expand-lg "style="background-color:#121212;">
@@ -69,10 +79,9 @@
         </button>
         </div>
     </nav>
-    <div class="row col-md-12 mt-5"></div>
-      <div class="container-fluid" >
+      <div class="container-fluid mt-5" >
         <div class="row">
-        <div class="card col-md-4 text-center mx-auto mb-4" style="width: 18rem;"  >
+        <div class="card col-4 text-center mx-auto mb-4" style="width: 18rem;"  >
           <img src="img/accesorio.jpg" class="card-img-top img-fluid" alt="..."  >
           <div class="card-body "  >
             <h5 class="card-title">Estuche Sony PSVita</h5>
@@ -81,15 +90,15 @@
             <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal"  >Añadir al carrito</a>
           </div>
         </div>
-        <div class="card col-md-4 text-center mx-auto mb-4" style="width: 18rem;">
+        <div class="card col-4 text-center mx-auto mb-4" style="width: 18rem;">
           <img src="img/accesorio4.jpg" class="card-img-top img-fluid" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Grip Nintendo 3DS</h5>
+            <h5 class="card-title">Grip Nintendo 3DS!</h5>
             <p class="card-text">Grip plastic para la consola Nintendo 3DS<br>$19.990<br>Stock: 13 <br> Marca: Nintendo</p>
             <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
           </div>
         </div>
-        <div class="card col-md-4 text-center mx-auto mb-4" style="width: 18rem;">
+        <div class="card col-4 text-center mx-auto mb-4" style="width: 18rem;">
           <img src="img/accesorio3.jpg" class="card-img-top img-fluid" alt="...">
           <div class="card-body">
             <h5 class="card-title">Estuche Nintendo 3DS</h5>
@@ -101,7 +110,7 @@
   </div>
   <div class="container-fluid">
     <div class="row">
-    <div class="card col-md-4 text-center mx-auto mb-4" style="width: 18rem;">
+    <div class="card col-4 text-center mx-auto mb-4" style="width: 18rem;">
       <img src="img/accesorio5.jpg" class="card-img-top img-fluid" alt="...">
       <div class="card-body ">
         <h5 class="card-title">Stylus Nintendo 3DS</h5>
@@ -109,7 +118,7 @@
         <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
       </div>
     </div>
-    <div class="card col-md-4 text-center mx-auto mb-4" style="width: 18rem;">
+    <div class="card col-4 text-center mx-auto mb-4" style="width: 18rem;">
       <img src="img/accesriofinal.jpg" class="card-img-top img-fluid" alt="...">
       <div class="card-body">
         <h5 class="card-title">Stand Nintendo 3DS</h5>
@@ -117,7 +126,7 @@
         <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
       </div>
     </div>
-    <div class="card col-md-4 text-center mx-auto mb-4" style="width: 18rem;">
+    <div class="card col-4 text-center mx-auto mb-4" style="width: 18rem;">
       <img src="img/accesoriofina_.jpg" class="card-img-top img-fluid" alt="...">
       <div class="card-body">
         <h5 class="card-title">Cargador Nintendo 3DS</h5>

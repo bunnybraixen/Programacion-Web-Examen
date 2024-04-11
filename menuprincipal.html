@@ -29,14 +29,24 @@
     background-color: #121212; /* Adjust color as needed */
     
   }
-    </style>
+  
+  .video-background {
+        width:100%;
+        height:100%;
+        overflow:hidden;
+        display:flex;
+        justify-content:center;
+        background-position: 100px, 30px;
+    }  </style>
   </head>
   <body class="body">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     
-    <video style="z-index: -1; position: fixed; width: auto; height:100%;" autoplay muted loop id="background">
-      <source src="Img/background.mp4" type="video/mp4">
-    </video>
+    <div class="video-background">
+      <video style="z-index: -1; position: fixed;" autoplay muted loop id="background">
+        <source src="Img/background-fixed.mp4" type="video/mp4">
+      </video>
+    </div>
 
     <!--navbar y contenido-->
     <nav class="navbar navbar-expand-lg "style="background-color:#121212;">
