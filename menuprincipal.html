@@ -31,20 +31,39 @@
   }
   
   .video-background {
-        width:100%;
-        height:100%;
-        overflow:hidden;
-        display:flex;
-        justify-content:center;
-        background-position: 100px, 30px;
-    }  </style>
+  position: fixed;
+  right: 0; 
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  width: auto; 
+  height: auto; 
+  z-index: -100;
+  background-size: cover;
+}
+
+.video-background video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+ </style>
   </head>
   <body class="body">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     
     <div class="video-background">
-      <video style="z-index: -1; position: fixed;" autoplay muted loop id="background">
-        <source src="Img/background-fixed.mp4" type="video/mp4">
+      <video style="z-index: -1" autoplay muted loop id="background">
+        <source src="Img/background-final2.mp4" type="video/mp4">
       </video>
     </div>
 
@@ -199,7 +218,7 @@
 
 <div class="row col-md-12 mt-5"></div>
 
-<div class="col-md-12 mt-5" style="background-color: #121212;">
+<div class="col-md-12 mt-5 d-none d-lg-block" style="background-color: #121212;">
   <img src="Img/bot.png" alt="" style="width: 100%; ;">
 </div>
 
