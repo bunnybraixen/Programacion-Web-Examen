@@ -9,7 +9,6 @@ $(function(){
     const precioOG6 = $('#precio6').text()
 
 
-
     $('.btnLimpiar').click(function() {
         $('.txtEmail, .txtClave').val('');
 
@@ -19,7 +18,7 @@ $(function(){
         $.getJSON('https://mindicador.cl/api', function(data) {
         var dailyIndicators = data;
         const dolar = dailyIndicators.dolar.valor
-        console.log($('#precio').text().replace(/[.,\s]/g, ''))
+        console.log($('#precio2').text())
         $('#precio').text((Number($('#precio').text().replace(/[.,\s]/g, '')) / dolar).toFixed(2))
         $('#precio2').text((Number($('#precio2').text().replace(/[.,\s]/g, '')) / dolar).toFixed(2))
         $('#precio3').text((Number($('#precio3').text().replace(/[.,\s]/g, '')) / dolar).toFixed(2))

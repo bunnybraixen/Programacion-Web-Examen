@@ -6,7 +6,8 @@
     <title>Accesorios</title>
     <link rel="icon" href="Img/favicon.png" type="image/x-icon"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="accesorios.js"></script>
     <style>
       *{
         color: white;
@@ -14,11 +15,10 @@
       .card{
         background-color: #121212;
         color: white;
-  overflow: auto;
-  width:25%;
-
-  
+        max-width:300px;
       }
+
+      
 .video-background {
   position: fixed;
   right: 0; 
@@ -45,6 +45,12 @@
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
 }
+
+
+.inline {
+  display: inline;
+}
+
 </style>
 
 </head>
@@ -100,42 +106,47 @@
         <button class="btn" type="submit" style="color: purple; background-color: cyan;">Buscar</button>
       </form>
       <!--carrito-->
-      <button type="button" class="btn btn-muted">
-        <img src="Img/cart.png" width="30"/>  
-      </button>
+      <a href="carro.html">
+        <button type="button" href="registro.html" class="btn btn-muted">
+          <img src="Img/cart.png" width="30"/>  
+        </button>
+      </a>
       </div>
   </nav>
       <div class="container-fluid mt-5" >
         <div class="row">
-        <div class="card col-xs-4 col-4 col-sm-4 col-md-4 col-lg-4 text-center mx-auto mb-4"  >
-          <img src="Img/accesorio.jpg" class="img-fluid card-img-top " alt="..."  >
-          <div class="card-body"  >
-            <h5 class="card-title d-none d-lg-block">Estuche Sony PSVita</h5>
-            <p class="card-text" style="font-size: 3vw">$19.990</p>
-            <p class="card-text d-none d-lg-block">Estuche para la consola PSVITA (Incluye adaptador SD2VITA)<br>
+          <div class="card col-lg-4 col-md-4 col-sm-12 text-center mx-auto mb-4">
+          <img src="Img/accesorio.jpg" class="imagen img-fluid card-img-top " alt="..."  >
+          <div class="card-body">
+            <h5 class="card-title">Estuche Sony PSVita</h5>
+            <p class="inline card-text">$</p>
+            <p id="precio" class="inline card-text">19.990</p>
+            <p class="card-text">Estuche para la consola PSVITA (Incluye adaptador SD2VITA)<br>
             Stock: 42<br> Marca: Sony</p>
             <div class="d-flex justify-content-center">
-            <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal"  >Añadir al carrito</a>
-          </div>
+              <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
+            </div>
           </div>
         </div>
-        <div class="card col-xs-4 col-4 col-sm-4 col-md-4 col-lg-4 text-center mx-auto mb-4">
+        <div class="card col-lg-4 col-md-4 col-sm-12 text-center mx-auto mb-4">
           <img src="Img/accesorio4.jpg" class="card-img-top img-fluid" alt="...">
           <div class="card-body">
-            <h5 class="card-title d-none d-lg-block">Grip Nintendo 3DS!</h5>
-            <p class="card-text" style="font-size: 3vw">$19.990</p>
-            <p class="card-text d-none d-lg-block">Grip plastic para la consola Nintendo 3DS <br>Stock: 13 <br> Marca: Nintendo</p>
+            <h5 class="card-title">Grip Nintendo 3DS!</h5>
+            <p class="inline card-text">$</p>
+            <p id="precio2" class="inline card-text">29.990</p>
+            <p class="card-text">Grip plastic para la consola Nintendo 3DS <br>Stock: 13 <br> Marca: Nintendo</p>
             <div class="d-flex justify-content-center">
             <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
           </div>
           </div>
         </div>
-        <div class="card col-xs-4 col-4 col-sm-4 col-md-4 col-lg-4 text-center mx-auto mb-4">
+        <div class="card col-lg-4 col-md-4 col-sm-12 text-center mx-auto mb-4">
           <img src="Img/accesorio3.jpg" class="card-img-top img-fluid" alt="...">
           <div class="card-body">
-            <h5 class="card-title d-none d-lg-block">Estuche Nintendo 3DS</h5>
-            <p class="card-text" style="font-size: 3vw"> $19.990</p>
-            <p class="card-text d-none d-lg-block">Estuche para Nintendo 3DS y cartuchos<br>Stock: 90 <br> Marca: Nintendo</p> 
+            <h5 class="card-title">Estuche Nintendo 3DS</h5>
+            <p class="inline card-text">$</p>
+            <p id="precio3" class="inline card-text">9.990</p>
+            <p class="card-text">Estuche para Nintendo 3DS y cartuchos<br>Stock: 90 <br> Marca: Nintendo</p> 
             <div class="d-flex justify-content-center">
             <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;"  data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
           </div>
@@ -145,42 +156,53 @@
 </div>
   <div class="container-fluid">
     <div class="row">
-    <div class="card col-xs-4 col-4 col-sm-4 col-md-4 col-lg-4 text-center mx-auto mb-4">
+      <div class="card col-lg-4 col-md-4 col-sm-12 text-center mx-auto mb-4">
       <img src="Img/accesorio5.jpg" class="card-img-top img-fluid" alt="...">
       <div class="card-body">
-        <h5 class="card-title  d-none d-lg-block">Stylus Nintendo 3DS</h5>
-        <p class="card-text" style="font-size: 3vw"> $19.990</p>
-        <p class="card-text  d-none d-lg-block">Lapices oficiales para la pantalla de Nintendo 3DS<br>Stock: 11 <br> Marca: Nintendo</p>
+        <h5 class="card-title">Stylus Nintendo 3DS</h5>
+        <p class="inline card-text">$</p>
+        <p id="precio4" class="inline card-text">24.990</p>
+        <p class="card-text">Lapices oficiales para la pantalla de Nintendo 3DS<br>Stock: 11 <br> Marca: Nintendo</p>
         <div class="d-flex justify-content-center">
         <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
       </div>
       </div>
     </div>
-    <div class="card col-xs-4 col-4 col-sm-4 col-md-4 col-lg-4  text-center mx-auto mb-4">
+    <div class="card col-lg-4 col-md-4 col-sm-12 text-center mx-auto mb-4">
       <img src="Img/accesriofinal.jpg" class="card-img-top img-fluid" alt="...">
       <div class="card-body">
-        <h5 class="card-title d-none d-lg-block">Stand Nintendo 3DS</h5>
-        <p class="card-text" style="font-size: 3vw"> $19.990</p>
-        <p class="card-text  d-none d-lg-block">Stand de carga para Nintendo 3DS (Incluye cable)<br>Stock: 3 <br> Marca: Nintendo</p>
+        <h5 class="card-title">Stand Nintendo 3DS</h5>
+        <p class="inline card-text">$</p>
+        <p id="precio5" class="inline card-text">5.990</p>
+        <p class="card-text">Stand de carga para Nintendo 3DS (Incluye cable)<br>Stock: 3 <br> Marca: Nintendo</p>
         <div class="d-flex justify-content-center">
 
         <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
       </div>
     </div>
     </div>
-    <div class="card col-xs-4 col-4 col-sm-4 col-md-4 col-lg-4 text-center mx-auto mb-4">
+    <div class="card col-lg-4 col-md-4 col-sm-12 text-center mx-auto mb-4">
       <img src="Img/accesoriofina_.jpg" class="card-img-top img-fluid" alt="...">
       <div class="card-body">
-        <h5 class="card-title  d-none d-lg-block">Cargador Nintendo 3DS</h5>
-        <p class="card-text" style="font-size: 3vw"> $19.990</p>
+        <h5 class="card-title">Cargador Nintendo 3DS</h5>
+        <p class="inline card-text">$</p>
+        <p id="precio6" class="inline card-text">39.990</p>
         
-        <p class="card-text  d-none d-lg-block">Cargador oficial para consola Nintendo 3DS<br> Stock: 1 <br> Marca: Nintendo</p>
+        <p class="card-text">Cargador oficial para consola Nintendo 3DS<br> Stock: 1 <br> Marca: Nintendo</p>
         <div class="d-flex justify-content-center">
         <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
       
       </div>
     </div>
+    
   </div>
+  <button  type="button" class="btnDivisaCLP btn-primary" id="btnDivisaCLP"  style="color: white; background-color: cyan; color: purple; border-color: purple; visibility:hidden; ">
+    Cambiar precios a CLP
+  </button>
+
+  <button type="button" class="btnDivisa btn-primary" id="btnDivisa" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+    Cambiar precios a USD
+  </button>
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
