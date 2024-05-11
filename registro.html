@@ -6,6 +6,9 @@
     <title>Registro</title>
     <link rel="icon" href="Img/favicon.png" type="image/x-icon"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="registro.js"></script>
+   
     <style>
       *{
         color: white;
@@ -75,6 +78,9 @@
             <li class="nav-item">
               <a class="nav-link" style="color: white;" href="contacto.html">Contacto</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" style="color: white;" href="admin.html">Admin</a>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" style="color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Categorias
@@ -93,9 +99,11 @@
         <button class="btn" type="submit" style="color: purple; background-color: cyan;">Buscar</button>
       </form>
       <!--carrito-->
-      <button type="button" class="btn btn-muted">
-        <img src="Img/cart.png" width="30"/>  
-      </button>
+      <a href="carro.html">
+        <button type="button" href="registro.html" class="btn btn-muted">
+          <img src="Img/cart.png" width="30"/>  
+        </button>
+      </a>
       </div>
   </nav>
 
@@ -113,23 +121,23 @@
               <label for="exampleInputEmail1">
                 Correo Electronico
               </label>
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ejemplo@email.com" style="color: white; background-color: #121212; border-color: cyan; "/>
+              <input type="email" class="loginEmail form-control" id="exampleInputEmail1" placeholder="ejemplo@email.com" style="color: white; background-color: #121212; border-color: cyan; "/>
             </div>
 
             <div class="form-group mb-3">
               <label for="exampleInputPassword1">
                 Contraseña
               </label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="password" class="loginClave form-control" id="exampleInputPassword1" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
 
-            <div class="checkbox m-3" style="font-size:12px;">
+            <div class="checkbox2 m-3" style="font-size:12px;">
               <label>
-                <input type="checkbox"/> Mantener la sesion iniciada
+                <input type="checkbox" class="checkbox2"/> Mantener la sesion iniciada
               </label>
             </div>
 
-            <button type="submit" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;">
+            <button type="button" class="btnLogin btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">
               Iniciar Sesion
             </button>
 
@@ -148,37 +156,97 @@
               <label for="exampleInputEmail1">
                 Nombre de Usuario
               </label>
-              <input type="" class="form-control" id="exampleInputEmail1" placeholder="Usuario" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="" class="txtUsuario form-control" id="exampleInputEmail1" placeholder="Usuario" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
+
+            <div class="form-group mb-4">
+              <label for="exampleInputEmail1">
+                RUT
+              </label>
+              <input type="" class="txtRut form-control" id="exampleInputEmail1" placeholder="12.345.678-9" style="color: white; background-color: #121212; border-color: cyan;"/>
+            </div>
+
 
             <div class="form-group mb-4">
               <label for="exampleInputEmail1">
                 Correo Electronico
               </label>
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ejemplo@email.com" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="email" class="txtEmail form-control" id="txtEmail" placeholder="ejemplo@email.com" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
+
+            <div class="form-group mb-4">
+              <label for="exampleInputEmail1">
+                Telefono
+              </label>
+              <input type="" class="txtTelefono form-control" id="exampleInputEmail1" placeholder="+56 1 2345 6789" style="color: white; background-color: #121212; border-color: cyan;"/>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="exampleInputEmail1">
+                Fecha de Nacimiento
+              </label>
+              <input type="" class="txtFechaNacimiento form-control" id="exampleInputEmail1" placeholder="12/13/2014" style="color: white; background-color: #121212; border-color: cyan;"/>
+            </div>
+
+            
+            <div class="form-group mb-4">
+              <label for="exampleInputEmail1">
+                Direccion
+              </label>
+              <input type="" class="txtDireccion form-control" id="exampleInputEmail1" placeholder="Calle Larga 1234" style="color: white; background-color: #121212; border-color: cyan;"/>
+            </div>
+
+            
+            
+            <div class="form-group mb-4">
+              <label for="exampleInputEmail1">
+                Region<br>
+              </label>
+              <select class="txtRegion form-select form-select-md mb-3" aria-label=".form-select-md example" style="color: white; background-color: #121212; border-color: cyan;">
+                <option selected>Seleccione una region...</option>
+                <option value="Arica">Arica</option>
+                <option value="Tarapaca">Tarapaca</option>
+                <option value="Antofagasta">Antofagasta</option>
+                <option value="Atacama">Atacama</option>
+                <option value="Coquimbo">Coquimbo</option>
+                <option value="Valparaiso">Valparaiso</option>
+                <option value="Metropolitana">Metropolitana</option>
+                <option value="O'Higgins">O'Higgins</option>
+                <option value="Maule">Maule</option>
+                <option value="Ñuble">Ñuble</option>
+                <option value="Biobio">Biobio</option>
+                <option value="Araucania">Araucania</option>
+                <option value="Los Rios">Los Rios</option>
+                <option value="Los Lagos">Los Lagos</option>
+                <option value="Aysen">Aysen</option>
+                <option value="Magallanes">Magallanes</option>
+              </select>
+            </div>
+            
 
             <div class="form-group mb-4">
               <label for="exampleInputPassword1">
                 Contraseña
               </label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="password" class="txtClave form-control" id="txtClave" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
             
             <div class="form-group mb-3">
               <label for="exampleInput">
                 Repetir Contraseña
               </label>
-              <input type="password" class="form-control" id="exampleInput" placeholder="Contraseña" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="password" class="txtClaveVer form-control" id="txtClave" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
+            
+
 
             <div class="checkbox m-3" style="font-size:12px;">
               <label>
-                <input type="checkbox" /> Acepto los terminos y condiciones
+                <input type="checkbox" class="checkbox" /> Acepto los terminos y condiciones
               </label>
             </div> 
 
-            <button type="submit" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;">
+            <button type="button" class="btnEnviar btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">
               Registrarme
             </button>
 
