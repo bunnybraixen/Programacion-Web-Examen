@@ -1,0 +1,148 @@
+{% extends "plantillaBase.html"  %}
+{% block tituloPestana %} Menu Principal {% endblock %}
+{% block tituloPrincipal %} {% endblock %}
+{% block mensaje %}
+{% endblock %}
+{% block contenido %}
+{% endblock %}
+{% block listado %}
+{% load static %}
+<style>
+  .card{
+    background-color: #121212;
+    color: white;
+  }
+
+  .card{
+    background-color: #121212;
+    color: white;
+    max-width:300px;
+  }
+
+</style>
+<script src="{% static 'Images/accesorios.js' %}"></script>
+      <div class="container-fluid mt-5" >
+        <div class="row">
+          <div class="card col-lg-4 col-md-4 col-sm-12 text-center mx-auto mb-4">
+          <a href="estsonpsv.html">
+          <img src="{% static 'Images/accesorio.jpg' %}"class="imagen img-fluid card-img-top " alt="..."  >
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">Estuche Sony PSVita</h5>
+            <p class="inline card-text">$</p>
+            <p id="precio" class="inline card-text">19.990</p>
+            <p class="card-text">Estuche para la consola PSVITA (Incluye adaptador SD2VITA)<br>
+            Stock: 42<br> Marca: Sony</p>
+            <div class="d-flex justify-content-center">
+              <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
+            </div>
+          </div>
+        </div>
+        <div class="card col-lg-4 col-md-4 col-sm-12 text-center mx-auto mb-4">
+          <a href="gripn3ds.html">
+          <img src="{% static 'Images/accesorio4.jpg' %}" class="card-img-top img-fluid" alt="...">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">Grip Nintendo 3DS!</h5>
+            <p class="inline card-text">$</p>
+            <p id="precio2" class="inline card-text">29.990</p>
+            <p class="card-text">Grip plastic para la consola Nintendo 3DS <br>Stock: 13 <br> Marca: Nintendo</p>
+            <div class="d-flex justify-content-center">
+            <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
+          </div>
+          </div>
+        </div>
+        <div class="card col-lg-4 col-md-4 col-sm-12 text-center mx-auto mb-4">
+          <a href="estn3ds.html">
+          <img src="{% static 'Images/accesorio3.jpg' %}"class="card-img-top img-fluid" alt="...">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">Estuche Nintendo 3DS</h5>
+            <p class="inline card-text">$</p>
+            <p id="precio3" class="inline card-text">9.990</p>
+            <p class="card-text">Estuche para Nintendo 3DS y cartuchos<br>Stock: 90 <br> Marca: Nintendo</p> 
+            <div class="d-flex justify-content-center">
+            <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;"  data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="card col-lg-4 col-md-4 col-sm-12 text-center mx-auto mb-4">
+      <a href="stylusn3ds.html">
+      <img src="{% static 'Images/accesorio.jpg' %}" class="card-img-top img-fluid" alt="...">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title">Stylus Nintendo 3DS</h5>
+        <p class="inline card-text">$</p>
+        <p id="precio4" class="inline card-text">24.990</p>
+        <p class="card-text">Lapices oficiales para la pantalla de Nintendo 3DS<br>Stock: 11 <br> Marca: Nintendo</p>
+        <div class="d-flex justify-content-center">
+        <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
+      </div>
+      </div>
+    </div>
+    <div class="card col-lg-4 col-md-4 col-sm-12 text-center mx-auto mb-4">
+      <a href="stndn3ds.html">
+      <img src="{% static 'Images/accesriofinal.jpg' %}"class="card-img-top img-fluid" alt="...">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title">Stand Nintendo 3DS</h5>
+        <p class="inline card-text">$</p>
+        <p id="precio5" class="inline card-text">5.990</p>
+        <p class="card-text">Stand de carga para Nintendo 3DS (Incluye cable)<br>Stock: 3 <br> Marca: Nintendo</p>
+        <div class="d-flex justify-content-center">
+
+        <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
+      </div>
+    </div>
+    </div>
+    <div class="card col-lg-4 col-md-4 col-sm-12 text-center mx-auto mb-4">
+      <a href="cargn3ds.html">
+      <img src="{% static 'Images/Accesoriofina_.jpg' %}" class="card-img-top img-fluid" alt="...">
+     </a>
+      <div class="card-body">
+        <h5 class="card-title">Cargador Nintendo 3DS</h5>
+        <p class="inline card-text">$</p>
+        <p id="precio6" class="inline card-text">39.990</p>
+        
+        <p class="card-text">Cargador oficial para consola Nintendo 3DS<br> Stock: 1 <br> Marca: Nintendo</p>
+        <div class="d-flex justify-content-center">
+        <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
+      
+      </div>
+    </div>
+    
+  </div>
+  <button  type="button" class="btnDivisaCLP btn-primary" id="btnDivisaCLP"  style="color: white; background-color: cyan; color: purple; border-color: purple; visibility:hidden; ">
+    Cambiar precios a CLP
+  </button>
+
+  <button type="button" class="btnDivisa btn-primary" id="btnDivisa" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+    Cambiar precios a USD
+  </button>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" style="color: white; background-color: #121212;">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5"   id="exampleModalLabel">Añadir al carrito</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ¿Seguro que desea añadir al carrito?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-dismiss="modal">Añadir al carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row col-md-12 mt-5"></div>
+
+</body>
+</html>
+{% endblock %}

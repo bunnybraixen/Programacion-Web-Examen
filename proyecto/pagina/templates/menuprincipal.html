@@ -1,0 +1,184 @@
+
+{% extends "plantillaBase.html"  %}
+{% block tituloPestana %} Menu Principal {% endblock %}
+{% block tituloPrincipal %} {% endblock %}
+{% block mensaje %}
+{% endblock %}
+{% block contenido %}
+{% endblock %}
+{% block listado %}
+{% load static %}
+<style>
+  .card{
+    background-color: #121212;
+    color: white;
+  }
+
+  .card{
+    background-color: #121212;
+    color: white;
+    max-width:300px;
+  }
+
+</style>
+<script src="{% static 'Images/menuPrincipal.js' %}"></script>
+<div class="col-md-12 mb-5">
+  <div id="carouselExampleCaptions" class="carousel slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
+    </div>
+    <div class="carousel-inner">
+      <a href="bg3.html">
+      <div class="carousel-item active">
+        <div class="gradient-overlay " >
+          
+        <img src="{% static 'Images/banner1.png' %}" class="d-block w-100 bg-primary.bg-gradienttext-white" alt="...">
+      
+      </div> 
+        
+        <div class="carousel-caption">
+          <h5 style="font-size: 1.5vw">Baldur's Gate 3</h5>
+          <p style="font-size: 1.5vw">Reúne a tu grupo y regresa a los Reinos Olvidados en una historia de compañerismo, traición, sacrificio, supervivencia y la atracción de un poder absoluto.</p>
+          <p class="inline" style="font-size: 2vw">$</p>
+        <p id="precio" class="inline" style="font-size: 2vw">69.990</p>
+        </div>
+      </div>
+    </a>
+    <a href="tloup1.html">
+      <div class="carousel-item">
+        <div class="gradient-overlay">
+        <img src="{% static 'Images/banner2.jpg' %}"  class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-caption">
+          <h5 style="font-size: 1.5vw">The Last of Us™ Part I</h5>
+          <p style="font-size: 1.5vw">Experimenta la emocionante historia y los inolvidables personajes de The Last of Us, ganador de más de 200 premios Juego del Año.</p>
+          <p class="inline" style="font-size: 2vw">$</p>
+        <p id="precio2" class="inline" style="font-size: 2vw">49.990</p>
+        </div>
+      </div>
+    </a>
+    <a href="doom.html">
+      <div class="carousel-item">
+        <div class="gradient-overlay">
+        <img src="{% static 'Images/banner3.png' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-caption">
+          <h5 style="font-size: 1.5vw">DOOM Eternal</h5>
+          <p style="font-size: 1.5vw">Los ejércitos del infierno han invadido la Tierra. Conviértete en el Slayer en una campaña épica para un jugador y cruza dimensiones aniquilando demonios para impedir la destrucción definitiva de la humanidad.</p>
+          <p class="inline" style="font-size: 2vw">$</p>
+        <p id="precio3" class="inline" style="font-size: 2vw">29.990</p>
+        </div>
+      </div>
+    </a>
+    <a href="ff7r.html">
+      <div class="carousel-item">
+        <div class="gradient-overlay">
+        <img src="{% static 'Images/banner4.png' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-caption">
+          <h5 style="font-size: 1.5vw">Final Fantasy VII Rebirth</h5>
+          <p style="font-size: 1.5vw">Descubre un vasto mundo brillante en esta entrega independiente dentro del proyecto de remake de Final Fantasy VII.</p>
+          <p class="inline" style="font-size: 2vw">$</p>
+        <p id="precio4" class="inline" style="font-size: 2vw">56.990</p>
+        </div>
+      </div>
+    </a>
+    <a href="cp2077.html">
+      <div class="carousel-item">
+        <div class="gradient-overlay">
+        <img src="{% static 'Images/banner5.png' %}"class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-caption">
+          <h5 style="font-size: 1.5vw">Cyberpunk 2077</h5>
+          <p style="font-size: 1.5vw">Vuelve a meterte en la piel de V, merc con mejoras cibernéticas, y embárcate en una intrigante misión de espionaje de altos vuelos para salvar a la presidenta de los Nuevos Estados Unidos.</p>
+          <p class="inline" style="font-size: 2vw">$</p>
+        <p id="precio5" class="inline" style="font-size: 2vw">39.990</p>
+        </div>
+      </div>
+      <a href="unicorn.html">
+      <div class="carousel-item">
+        <div class="gradient-overlay">
+        <img src="{% static 'Images/banner6.jpg' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-caption">
+          <h5 style="font-size: 1.5vw">Unicorn Overlord</h5>
+          <p style="font-size: 1.5vw">Lucha contra el destino y embárcate en una aventura real para recuperar tu reinado junto a aliados de confianza.</p>
+          <p class="inline"style="font-size: 2vw">$</p>
+        <p id="precio6" class="inline" style="font-size: 2vw">49.990</p>
+        </div>
+      </div>
+    </a>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+
+<!--muchotexto-->
+<div class="container">
+  <div class="row justify-content-center text-center ">
+    <div class="col-11 col-md-10 mb-5">
+      <div style="color: white; font-size:calc(8px + 1vw); text-shadow: 1px 1px 4px black;">
+        <h2 class="">Conócenos!</h2>
+        <p class="text-sm">Somos CRITICAL HIT!, tu destino definitivo para todo lo relacionado con videojuegos y accesorios gamer.</p>
+        <p class="text-sm">Adéntrate en un mundo donde la emoción y la diversión se fusionan en cada rincón de nuestra tienda. Desde los clásicos atemporales hasta los lanzamientos más recientes, ofrecemos una amplia selección de juegos para todas las plataformas y gustos.</p> 
+        <p class="text-sm">Diversión garantizada!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center text-center">
+    
+    <h2 class="col-7 mt-5 mb-4" style="color: white; font-size:calc(15px + 1vw); text-shadow: 1px 1px 4px black;" >Explora nuestros productos!</h2>
+    
+   <!--cartas-->
+   <div class="row justify-content-center col-12 mb-5">
+        <div class="col-5">
+          <a href="Videojuegos">
+          <img src="{% static 'images/juegos.png' %}" href="Videojuegos" alt="videojuegos" style="width:100%;">
+          </a>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-5">
+          <a href="Accesorios">
+            <img src="{% static 'Images/accesorios.png' %}" href="Accesorios" t="accesorios" style="width:100%;">
+          </a>  
+        </div>
+      </div>
+      <button  type="button" class="btnDivisaCLP btn-primary" id="btnDivisaCLP"  style="color: white; background-color: cyan; color: purple; border-color: purple; visibility:hidden; ">
+        Cambiar precios a CLP
+      </button>
+    
+      <button type="button" class="btnDivisa btn-primary" id="btnDivisa" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+        Cambiar precios a USD
+      </button>
+    </div>
+    
+  </div>
+</div>
+
+
+<div class="col-12 align-items-end mt-5" style="bottom: 0%; background-color: #121212;">
+  <img src="{% static 'Images/bot.png' %}" alt="" style="width: 100%; ;">
+</div>
+
+
+
+
+</body>
+</html>
+{% endblock %}

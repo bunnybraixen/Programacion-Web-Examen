@@ -1,0 +1,100 @@
+{% extends "plantillaBase.html"  %}
+{% block tituloPestana %} Menu Principal {% endblock %}
+{% block tituloPrincipal %} {% endblock %}
+{% block mensaje %}
+{% endblock %}
+{% block contenido %}
+{% endblock %}
+{% block listado %}
+{% load static %}
+
+  
+<script src="{% static 'Images/admin.js' %}"></script>
+    <!--signin-->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+
+        <!--signin-->
+        <div class="col-10 col-md-4 mt-5">
+          <form role="form">
+
+            <div class="form-group mb-4">
+               <h2>Ingresar producto</h2>
+              <label for="exampleInputEmail1">
+                Nombre
+              </label>
+              <input type="email" class="txtNombre form-control" id="nombre" placeholder="ej: 'Fallout 2'" style="color: white; background-color: #121212; border-color: cyan; "/>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="exampleInputEmail1">
+                Categoria<br>
+              </label>
+              <select class="txtCategoria form-select form-select-md mb-3" aria-label=".form-select-md example" style="color: white; background-color: #121212; border-color: cyan;">
+                <option selected>Seleccione una categoria...</option>
+                <option value="Accesorios">Accesorios</option>
+                <option value="Videojuegos">Videojuegos</option>
+              </select>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="exampleInputPassword1">
+                Descripcion
+              </label>
+              <input class="txtDescripcion form-control" placeholder="ej: Juego muy divertido" id="exampleInputPassword1" style="color: white; background-color: #121212; border-color: cyan;"/>
+            </div>
+
+
+          </form>
+        </div>
+
+
+        <!--registro-->
+        <div class="col-10 col-md-4 m-4 mb-5 mt-md-5 ">
+          <form role="form">
+            
+            <div class="form-group mb-4">
+              <b></b>
+              <h2><br></h2>
+              <label for="exampleInputEmail1">
+                Stock
+              </label>
+
+              <input id="form1" min="0" name="quantity" value="1" type="number"
+                  class="txtStock form-control form-control" style="color: white; background-color: #121212; border-color: cyan;" />
+
+              </div>
+
+            <div class="form-group mb-4">
+              <label for="exampleInputEmail1">
+                Consola
+              </label>
+              <input type="" class="txtConsola form-control" id="exampleInputEmail1" placeholder="ej: 'PS5'" style="color: white; background-color: #121212; border-color: cyan;"/>
+            </div>
+
+
+            <div class="form-group mb-4">
+              <label for="exampleInputEmail1">
+                Precio
+              </label>
+              <input type="email" class="txtPrecio form-control" id="txtEmail" placeholder="ej: '29.990'" style="color: white; background-color: #121212; border-color: cyan;"/>
+            </div>
+
+            <button type="button" class="btnEnviar btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+              Registrarme
+            </button>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+    
+  </body>
+</html>
+{% endblock %}

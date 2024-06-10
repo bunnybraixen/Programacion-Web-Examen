@@ -1,0 +1,172 @@
+{% extends "plantillaBase.html"  %}
+{% block tituloPestana %} Menu Principal {% endblock %}
+{% block tituloPrincipal %} {% endblock %}
+{% block mensaje %}
+{% endblock %}
+{% block contenido %}
+{% endblock %}
+{% block listado %}
+{% load static %}
+
+  <script src="{% static 'Images/carro.js' %}"></script>
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-10">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          
+            <h3 class="fw-normal mb-0">Carro de compras</h3>
+          <div>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-body p-4">
+            <div class="row d-flex justify-content-between align-items-center">
+              <div class="col-md-2 col-lg-2 col-xl-2">
+                <img
+                src="{% static 'Images/juego4..jpg' %}"
+                  class="img-fluid" alt="...">
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-3">
+                <p class="lead fw-normal mb-2">Ratchet and Clank: Rift Apart</p>
+                <p><span class="text-muted">Consola: </span>PS5
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+
+                <input id="form1" min="0" name="quantity" value="1" type="number"
+                  class="form-control form-control-sm" />
+
+              </div>
+              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                <p class="inline card-text">$</p>
+            <p id="precio" class="inline card-text">19.990</p>
+              </div>
+              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-body p-4">
+            <div class="row d-flex justify-content-between align-items-center">
+              <div class="col-md-2 col-lg-2 col-xl-2">
+                <img
+                src="{% static 'Images/juego5_.jpg' %}"
+                  class="img-fluid" alt="...">
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-3">
+                <p class="lead fw-normal mb-2">Final Fantasy VII: Rebirth</p>
+                <p><span class="text-muted">Consola: </span>PS5
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+
+                <input id="form1" min="0" name="quantity" value="1" type="number"
+                  class="form-control form-control-sm" />
+
+              </div>
+              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                <p class="inline card-text">$</p>
+            <p id="precio4" class="inline card-text">56.990</p>
+              </div>
+              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-body p-4">
+            <div class="row d-flex justify-content-between align-items-center">
+              <div class="col-md-2 col-lg-2 col-xl-2">
+                <img
+                src="{% static 'Images/juego.jpg' %}"
+                  class="img-fluid" alt="...">
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-3">
+                <p class="lead fw-normal mb-2">The Last of Us. Part I</p>
+                <p><span class="text-muted">Consola: </span>PS5
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+
+                <input id="form1" min="0" name="quantity" value="1" type="number"
+                  class="form-control form-control-sm" />
+
+              </div>
+              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                <p class="inline card-text">$</p>
+            <p id="precio3" class="inline card-text">49.990</p>
+              </div>
+              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-body p-4">
+            <div class="row d-flex justify-content-between align-items-center">
+              <div class="col-md-2 col-lg-2 col-xl-2">
+                <img
+                src="{% static 'Images/juego2_.jpg' %}"
+                  class="img-fluid" alt="...">
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-3">
+                <p class="lead fw-normal mb-2">Star Ocean: The Second Story R</p>
+                <p><span class="text-muted">Consola: </span>PS5
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+
+
+                <input id="form1" min="0" name="quantity" value="1" type="number"
+                  class="form-control form-control-sm" />
+
+              </div>
+              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                <p class="inline card-text">$</p>
+            <p id="precio2" class="inline card-text">29.990</p>
+              </div>
+              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-body p-4 d-flex flex-row">
+            <div data-mdb-input-init class="form-outline flex-fill">
+              <input type="text" id="form1" class="form-control form-control-lg" />
+              <label class="form-label" for="form1">Codigo de descuento</label>
+            </div>
+            <button type="button"  class="btn2 btn btn-lg ms-3">Aplicar</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <p class="lead inline fw-normal mb-2">Total a pagar: $</p>
+            <p id="precio5" class="lead inline fw-normal mb-2">29.990</p>
+            <button type="button" class="btn2 btn btn-block btn-lg">Proceder con el pago</button>
+
+          </div>
+        </div>
+
+      </div>
+      <button  type="button" class="btnDivisaCLP btn-primary" id="btnDivisaCLP"  style="color: white; background-color: cyan; color: purple; border-color: purple; visibility:hidden; ">
+        Cambiar precios a CLP
+      </button>
+  
+      <button type="button" class="btnDivisa btn-primary" id="btnDivisa" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+        Cambiar precios a USD
+      </button>
+    </div>
+  </div>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,167 @@
+{% extends "plantillaBase.html"  %}
+{% block tituloPestana %} Menu Principal {% endblock %}
+{% block tituloPrincipal %} {% endblock %}
+{% block mensaje %}
+{% endblock %}
+{% block contenido %}
+{% endblock %}
+{% block listado %}
+{% load static %}
+<script src="{% static 'Images/registro.js' %}"></script>
+    <!--signin-->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+
+        <!--signin-->
+        <div class="col-10 col-md-4 mt-5">
+          <form role="form">
+
+            <div class="form-group mb-4">
+               <b>¿Ya tienes una cuenta?</b>
+               <h2>INICIA SESION</h2>
+              <label for="exampleInputEmail1">
+                Correo Electronico
+              </label>
+              <input type="email" class="loginEmail form-control" id="exampleInputEmail1" placeholder="ejemplo@email.com" style="color: white; background-color: #121212; border-color: cyan; "/>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="exampleInputPassword1">
+                Contraseña
+              </label>
+              <input type="password" class="loginClave form-control" id="exampleInputPassword1" style="color: white; background-color: #121212; border-color: cyan;"/>
+            </div>
+
+            <div class="checkbox2 m-3" style="font-size:12px;">
+              <label>
+                <input type="checkbox" class="checkbox2"/> Mantener la sesion iniciada
+              </label>
+            </div>
+
+            <button type="button" class="btnLogin btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+              Iniciar Sesion
+            </button>
+
+          </form>
+        </div>
+
+        <div class="col-12 col-md-1 m-4"></div>
+
+        <!--registro-->
+        <div class="col-10 col-md-4 m-4 mb-5 mt-md-5 ">
+          <form role="form">
+            
+            <div class="form-group mb-4">
+              <b>¿Nuevo Usuario?</b>
+              <h2>REGISTRATE</h2>
+              <label for="exampleInputEmail1">
+                Nombre de Usuario
+              </label>
+              <input type="" class="txtUsuario form-control" id="exampleInputEmail1" placeholder="Usuario" style="color: white; background-color: #121212; border-color: cyan;"/>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="exampleInputEmail1">
+                RUT
+              </label>
+              <input type="" class="txtRut form-control" id="exampleInputEmail1" placeholder="12.345.678-9" style="color: white; background-color: #121212; border-color: cyan;"/>
+            </div>
+
+
+            <div class="form-group mb-4">
+              <label for="exampleInputEmail1">
+                Correo Electronico
+              </label>
+              <input type="email" class="txtEmail form-control" id="txtEmail" placeholder="ejemplo@email.com" style="color: white; background-color: #121212; border-color: cyan;"/>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="exampleInputEmail1">
+                Telefono
+              </label>
+              <input type="" class="txtTelefono form-control" id="exampleInputEmail1" placeholder="+56 1 2345 6789" style="color: white; background-color: #121212; border-color: cyan;"/>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="exampleInputEmail1">
+                Fecha de Nacimiento
+              </label>
+              <input type="" class="txtFechaNacimiento form-control" id="exampleInputEmail1" placeholder="12/13/2014" style="color: white; background-color: #121212; border-color: cyan;"/>
+            </div>
+
+            
+            <div class="form-group mb-4">
+              <label for="exampleInputEmail1">
+                Direccion
+              </label>
+              <input type="" class="txtDireccion form-control" id="exampleInputEmail1" placeholder="Calle Larga 1234" style="color: white; background-color: #121212; border-color: cyan;"/>
+            </div>
+
+            
+            
+            <div class="form-group mb-4">
+              <label for="exampleInputEmail1">
+                Region<br>
+              </label>
+              <select class="txtRegion form-select form-select-md mb-3" aria-label=".form-select-md example" style="color: white; background-color: #121212; border-color: cyan;">
+                <option selected>Seleccione una region...</option>
+                <option value="Arica">Arica</option>
+                <option value="Tarapaca">Tarapaca</option>
+                <option value="Antofagasta">Antofagasta</option>
+                <option value="Atacama">Atacama</option>
+                <option value="Coquimbo">Coquimbo</option>
+                <option value="Valparaiso">Valparaiso</option>
+                <option value="Metropolitana">Metropolitana</option>
+                <option value="O'Higgins">O'Higgins</option>
+                <option value="Maule">Maule</option>
+                <option value="Ñuble">Ñuble</option>
+                <option value="Biobio">Biobio</option>
+                <option value="Araucania">Araucania</option>
+                <option value="Los Rios">Los Rios</option>
+                <option value="Los Lagos">Los Lagos</option>
+                <option value="Aysen">Aysen</option>
+                <option value="Magallanes">Magallanes</option>
+              </select>
+            </div>
+            
+
+            <div class="form-group mb-4">
+              <label for="exampleInputPassword1">
+                Contraseña
+              </label>
+              <input type="password" class="txtClave form-control" id="txtClave" style="color: white; background-color: #121212; border-color: cyan;"/>
+            </div>
+            
+            <div class="form-group mb-3">
+              <label for="exampleInput">
+                Repetir Contraseña
+              </label>
+              <input type="password" class="txtClaveVer form-control" id="txtClave" style="color: white; background-color: #121212; border-color: cyan;"/>
+            </div>
+            
+
+
+            <div class="checkbox m-3" style="font-size:12px;">
+              <label>
+                <input type="checkbox" class="checkbox" /> Acepto los terminos y condiciones
+              </label>
+            </div> 
+
+            <button type="button" class="btnEnviar btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+              Registrarme
+            </button>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+    
+  </body>
+</html>
+{% endblock %}

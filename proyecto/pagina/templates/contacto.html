@@ -1,0 +1,51 @@
+{% extends "plantillaBase.html"  %}
+{% block tituloPestana %} Menu Principal {% endblock %}
+{% block tituloPrincipal %} {% endblock %}
+{% block mensaje %}
+{% endblock %}
+{% block contenido %}
+{% endblock %}
+{% block listado %}
+{% load static %}
+    <div>
+                    <div class="container mt-5 justify-content-center">
+                        <div class="row">
+                <div>
+                  <div class="justify-content-center text-center">
+                    <h1>Contacto </h1>
+                    <h3>Somos una pagina dedicada a ofrecerte el mejor servicio </h3>
+                    <p>Sabemos lo importante que es tener rapida comunicacion a la hora de que surgan dudas, preguntas o problemas con nuestros productos.</p>
+                    <p>Aca abajo podras encontrar nuestros distintos medios de comunicacion por los cuales podras contactarnos y recibir respuestas en el menr tiempo posible. No dudes en comunicarte en caso de que hayas tenido problemas con tu producto o necesites hacer una devolucion.</p>
+                <div class="row mb-4"> 
+                  <div class="col-xs-4 col-4 col-sm-4 col-md-4 col-lg-4 text-center mx-auto mb-4"  >
+                                <a href="https://www.facebook.com/"><img src="{% static 'Images/facebook.svg' %}" style="scale:300%"> </a>
+                              </div>
+                              <div class="col-xs-4 col-4 col-sm-4 col-md-4 col-lg-4 text-center mx-auto mb-4"  >
+                                <a href="https://www.twitter.com/"><img src="{% static 'Images/twitter.svg' %}"style="scale:300%"> </a>
+                              </div>
+                              <div class="col-xs-4 col-4 col-sm-4 col-md-4 col-lg-4 text-center mx-auto mb-4"  >
+                                <a href="https://www.instagram.com/"><img src="{% static 'Images/instagram.svg' %}" style="scale:300%"> </a>
+                              </div>
+                            </div>
+                              <div class="row mb-5"> 
+                                <div class="col-xs-6 col-6 col-sm-6 col-md-6 col-lg-6 text-center mx-auto mb-4"  >
+                                <a><img src="{% static 'Images/envelope-fill.svg' %}" style="scale:300%; margin-right: 7%;"> criticalhit@gmail.es </a>
+                              </div>
+                              <div class="col-xs-6 col-6 col-sm-6 col-md-6 col-lg-6 text-center mx-auto mb-4"  >
+                                <a><img src="{% static 'Images/telephone-fill.svg' %}"style="scale:300%; margin-right: 3%"> +569 1234 5678 </a>
+                              </div>
+                              
+                            </div>
+                   
+                 
+                 
+              
+              </div>
+                  </div>
+                </div>
+                        </div>
+                    </div>
+
+</body>
+</html>
+{% endblock %}
