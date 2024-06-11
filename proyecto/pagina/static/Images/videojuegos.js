@@ -1,15 +1,20 @@
 
 
 $(function(){
+    const precioOG = []
     const precioOG1 = $('#precio').text()
     const precioOG2 = $('#precio2').text()
     const precioOG3 = $('#precio3').text()
     const precioOG4 = $('#precio4').text()
     const precioOG5 = $('#precio5').text()
     const precioOG6 = $('#precio6').text()
-
-
-
+    for (let i = 0; i < 1000; i++) {
+        precioOG[i] = $('#'+i).text()
+    } 
+    
+    
+    
+    
     $('.btnLimpiar').click(function() {
         $('.txtEmail, .txtClave').val('');
 
@@ -26,6 +31,10 @@ $(function(){
         $('#precio4').text((Number($('#precio4').text().replace(/[.,\s]/g, '')) / dolar).toFixed(2))
         $('#precio5').text((Number($('#precio5').text().replace(/[.,\s]/g, '')) / dolar).toFixed(2))
         $('#precio6').text((Number($('#precio6').text().replace(/[.,\s]/g, '')) / dolar).toFixed(2))
+        for (let i = 0; i < 1000; i++) {
+            $('#'+i).text((Number($('#'+i).text().replace(/[.,\s]/g, '')) / dolar).toFixed(2))
+        } 
+        
 
         document.getElementById('btnDivisa').style.visibility = 'hidden';
         $("#btnDivisaCLP").show();
@@ -49,6 +58,9 @@ $('.btnDivisaCLP').click(function() {
     $('#precio4').text(precioOG4)
     $('#precio5').text(precioOG5)
     $('#precio6').text(precioOG6)
+    for (let i = 0; i < 1000; i++) {
+        $('#'+i).text(precioOG[i])
+    } 
     document.getElementById('btnDivisaCLP').style.visibility = 'hidden';
     document.getElementById('btnDivisa').style.visibility = 'visible';
     

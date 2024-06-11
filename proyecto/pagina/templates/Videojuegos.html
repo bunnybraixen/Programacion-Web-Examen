@@ -20,121 +20,43 @@
   }
 
 </style>
-<script src="{% static 'Images/Videojuegos.js' %}"></script>
-      <div class="container-fluid mt-5">
-        <div class="row">
-        <div class="card col-md-4 text-center mx-auto mb-4">
-          <a href="tloup1.html">
-          <img src="{% static 'Images/juego.jpg' %}" class="card-img-top img-fluid " alt="...">
-          </a>
-          <div class="card-body ">
-            <h5 class="card-title ">The Last of Us Part I</h5>
-            <p class="inline card-text">$</p>
-            <p id="precio6" class="inline card-text">49.990</p>
-            <p class="card-text">Remake del juego original de The Last of Us<br>Stock: 3<br> Desarrollador: Naughty Dog</p>
-            <div class="d-flex justify-content-center">
-              <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
-            </div>
-          </div>
-        </div>
-        <div class="card col-md-4 text-center mx-auto mb-4">
-          <a href="tloup2.html">
-          <img src="{% static 'Images/juego1_.jpg' %}" class="card-img-top img-fluid" alt="...">
+<script src="{% static 'Images/videojuegos.js' %}"></script>
+    
+    <div class="container-fluid">
+      <div class="row">
+      
+      {% for producto in productos %}
+      {% if producto.categoria|slugify == 'videojuegos' %}
+        <div class="card col-md-4 col-4 text-center mx-auto mt-2 mb-4">
+          <a href="sl.html">
+          <img src="{% static 'Images/juego6.jpg' %}" class="card-img-top img-fluid" alt="...">
           </a>
           <div class="card-body">
-            <h5 class="card-title  ">The Last of Us Part II Remastered</h5>
-            <p  class="inline card-text">$</p>
-        <p id="precio5" class="inline card-text">39.990</p>
-            <p class="card-text">Remaster del ultimo juego de la saga The Last of Us<br>Stock: 1 <br>Desarrollador: Naughty Dog</p>
-            <div class="d-flex justify-content-center">
-              <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
-            </div>
-      </div>
-        </div>
-        <div class="card col-md-4 text-center mx-auto mb-4">
-          <a href="staroceanssr.html">
-          <img src="{% static 'Images/juego2_.jpg' %}" class="card-img-top img-fluid" alt="...">
-          </a>
-          <div class="card-body">
-            <h5 class="card-title ">Star Ocean: The Second Story R</h5>
+            <h5 class="card-title">{{ producto.nombre}}</h5>
             <p class="inline card-text">$</p>
-        <p id="precio4" class="inline card-text">29.990</p>
-            <p class="card-text">Remake del amado JRPG original de PS1<br> Stock: 7 <br> Desarrollador: Square Enix</p>
+            <p id= {{ producto.id }} class="inline card-text">{{ producto.precio}}</p>
+            <p class="card-text">{{producto.descripcion}}<br> Stock: {{ producto.stock}} <br> Desarrollador: {{ producto.consola}}</p>
             <div class="d-flex justify-content-center">
-              <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
-            </div>
+            <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
           </div>
         </div>
+        </div>
+      {% endif %} 
+      
+    {% endfor %}
       </div>
   </div>
-  <div class="container-fluid">
-    <div class="row">
-    <div class="card col-md-4 text-center mx-auto mb-4">
-      <a href="ratchetclank.html">
-      <img src="{% static 'Images/juego4..jpg' %}" class="card-img-top img-fluid" alt="...">
-      </a>
-      <div class="card-body ">
-        <h5 class="card-title">Ratchet and Clank: Rift Apart</h5>
-        <p class="inline card-text">$</p>
-        <p id="precio3" class="inline card-text">19.990</p>
-        <p class="card-text">Ultimo juego en la saga de Ratchet & Clank exclusivo de PS5 <br> Stock: 3 <br> Desarrollador: Insomniac</p>
-        <div class="d-flex justify-content-center">
-        <a href="#" class="btn btn-primary btn" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
-      </div>
-    </div>
-    </div>
-    <div class="card col-md-4 text-center mx-auto mb-4">
-      <a href="ff7r.html">
-      <img src="{% static 'Images/juego5_.jpg' %}" class="card-img-top img-fluid" alt="...">
-      </a>
-      <div class="card-body">
-        <h5 class="card-title ">Final Fantasy VII Rebirth</h5>
-        <p class="inline card-text">$</p>
-        <p id="precio2" class="inline card-text">56.990</p>
-        <p class="card-text ">Secuela del aclamado FF7 Remake<br> Stock: 8 <br>Desarrollador: Square Enix</p>
-        <div class="d-flex justify-content-center">
-        <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
-      </div>
-      </div>
-    </div>
-    <div class="card col-md-4 text-center mx-auto mb-4">
-      <a href="sl.html">
-      <img src="{% static 'Images/juego6.jpg' %}" class="card-img-top img-fluid" alt="...">
-      </a>
-      <div class="card-body">
-        <h5 class="card-title">SandLand</h5>
-        <p class="inline card-text">$</p>
-        <p id="precio" class="inline card-text">69.990</p>
-        <p class="card-text">JRPG con direccion de arte de Akira Toriyama <br> Stock: 9 <br> Desarrollador: Bandai Namco</p>
-        <div class="d-flex justify-content-center">
-        <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
-      </div>
-      </div>
-    </div>
-    {% for producto in productos %}
-      <div class="card col-md-4 text-center mx-auto mb-4">
-        <a href="sl.html">
-        <img src="{% static 'Images/juego6.jpg' %}" class="card-img-top img-fluid" alt="...">
-        </a>
-        <div class="card-body">
-          <h5 class="card-title">{{ producto.nombre}}</h5>
-          <p class="inline card-text">$</p>
-          <p id="precio" class="inline card-text">{{ producto.precio}}</p>
-          <p class="card-text">{{producto.descripcion}}<br> Stock: {{ producto.stock}} <br> Desarrollador: {{ producto.consola}}</p>
-          <div class="d-flex justify-content-center">
-          <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
-        </div>
-      </div>
-       </div>
-    {% endfor %}
-
-    <button  type="button" class="btnDivisaCLP btn-primary" id="btnDivisaCLP"  style="color: white; background-color: cyan; color: purple; border-color: purple; visibility:hidden; ">
+  <div class="container-fluid"> 
+<row>
+    <button  type="button" class="btnDivisaCLP btn-primary col-md-12 col-12" id="btnDivisaCLP"  style="color: white; background-color: cyan; color: purple; border-color: purple; visibility:hidden; ">
       Cambiar precios a CLP
     </button>
-
-    <button type="button" class="btnDivisa btn-primary" id="btnDivisa" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+  </row>
+  <row>
+    <button type="button" class="btnDivisa btn-primary col-md-12 col-12" id="btnDivisa" style="color: white; background-color: cyan; color: purple; border-color: purple;">
       Cambiar precios a USD
     </button>
+    </row>
 
   </div>
 </div>
@@ -156,7 +78,7 @@
   </div>
   
 </div>
-
+<a hidden id="longitud"> {{productos.count}}</a>
 </body>
 </html>
 {% endblock %}
