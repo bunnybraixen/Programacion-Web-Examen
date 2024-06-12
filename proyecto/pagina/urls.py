@@ -11,5 +11,7 @@ urlpatterns = [
     path('Contacto', views.Contacto, name='Contacto'), 
     path('carro', views.carro, name='carro'),
     path('carro <str:pk>', views.eliminarCarro, name='eliminarCarro'), 
+    path('eliminarProducto <str:pk>', views.eliminarProducto, name='eliminarProducto'), 
+    path('buscarProducto <str:pk>', views.buscarProducto, name='buscarProducto')
     
     ]

@@ -1,15 +1,10 @@
-
-
-
-
-
 $(function(){
     const precioOG = []
     const precioOG1 = $('#precio').text()
     const precioOG2 = $('#precio2').text()
     const precioOG3 = $('#precio3').text()
     const precioOG4 = $('#precio4').text()
-    const precioOG5 = (Number($('#precio4').text().replace(/[.,\s]/g, ''))+Number($('#precio2').text().replace(/[.,\s]/g, ''))+Number($('#precio3').text().replace(/[.,\s]/g, ''))+Number($('#precio').text().replace(/[.,\s]/g, '')))
+    
     function dinero(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
@@ -26,13 +21,15 @@ $(function(){
         const precioOG4 = Number($('#precio4').text().replace(/[.,\s]/g, ''))
         var precioFinal = 0
         for (let i = 0; i < 1000; i++) {
-            var precioFinal = PrecioFinal + Number($('#'+i).text().replace(/[.,\s]/g, ''))
+            var precioFinal = precioFinal + Number($('#'+i).text().replace(/[.,\s]/g, ''))
         } 
+        console.log(precioFinal)
         $('#precio5').text(dinero(precioFinal))
-    
+        globalThis.precioOG5 = $('#precio5').text()
+        console.log($('#precio5').text())
+        
       };
     
-
 
 
 
@@ -45,15 +42,14 @@ $(function(){
         $.getJSON('https://mindicador.cl/api', function(data) {
         var dailyIndicators = data;
         const dolar = dailyIndicators.dolar.valor
-        console.log($('#precio').text().replace(/[.,\s]/g, ''))
         $('#precio').text((Number($('#precio').text().replace(/[.,\s]/g, '')) / dolar).toFixed(2))
         $('#precio2').text((Number($('#precio2').text().replace(/[.,\s]/g, '')) / dolar).toFixed(2))
         $('#precio3').text((Number($('#precio3').text().replace(/[.,\s]/g, '')) / dolar).toFixed(2))
         $('#precio4').text((Number($('#precio4').text().replace(/[.,\s]/g, '')) / dolar).toFixed(2))
-        $('#16').text(gigapene)
         for (let i = 0; i < 1000; i++) {
             $('#'+i).text((Number($('#'+i).text().replace(/[.,\s]/g, '')) / dolar).toFixed(2))
         } 
+        $('#precio5').text((Number($('#precio5').text().replace(/[.,\s]/g, '')) / dolar).toFixed(2))
         
         document.getElementById('btnDivisa').style.visibility = 'hidden';
         $("#btnDivisaCLP").show();
@@ -71,12 +67,12 @@ $('.btnDivisaCLP').click(function() {
     $.getJSON('https://mindicador.cl/api', function(data) {
     var dailyIndicators = data;
     const dolar = dailyIndicators.dolar.valor
+    console.log(precioOG5)
     $('#precio').text(precioOG1)
     $('#precio2').text(precioOG2)
     $('#precio3').text(precioOG3)
     $('#precio4').text(precioOG4)
     $('#precio5').text(precioOG5)
-    $('#precio5').text(dinero(precioOG5))
     for (let i = 0; i < 1000; i++) {
         $('#'+i).text(precioOG[i])
     } 

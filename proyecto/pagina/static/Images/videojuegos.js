@@ -1,5 +1,3 @@
-
-
 $(function(){
     const precioOG = []
     const precioOG1 = $('#precio').text()

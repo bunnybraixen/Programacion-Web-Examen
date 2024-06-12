@@ -31,28 +31,44 @@ def Accesorios(request):
 
 def admin(request):
     context = {}
+    context['productos'] = Producto.objects.all()
     context['categoria'] = Categoria.objects.all()
     if request.method == 'POST':
         context['exito'] = "Hola!"
         print('HOLA')
+        id = request.POST['txtId']
         idCategoria =  request.POST['cmbCategoria']
         nombre = request.POST['txtNombre']
         descripcion = request.POST['txtDescripcion']
         consola = request.POST['txtConsola']
         precio = request.POST['txtPrecio']
         stock = request.POST['txtStock']
-
+        
+            
         if 'btnGuardar' in request.POST:
             categoria = Categoria.objects.get(pk=idCategoria) # buscar obj según id seleccionado
-            Producto.objects.create(
-                                    nombre=nombre,
-                                    categoria=categoria,
-                                    descripcion=descripcion,
-                                    consola=consola,
-                                    precio=precio,
-                                    stock=stock)
+            if id== "0":
+                
+                Producto.objects.create(
+                                        nombre=nombre,
+                                        categoria=categoria,
+                                        descripcion=descripcion,
+                                        consola=consola,
+                                        precio=precio,
+                                        stock=stock)
 
-            context['exito'] = "Los datos fueron guardados"
+                context['exito'] = "Los datos fueron guardados"
+            else:
+                item=Producto()
+                item.id = id
+                item.nombre = nombre
+                item.categoria = categoria
+                item.descripcion = descripcion
+                item.consola = consola
+                item.precio = precio
+                item.stock = stock
+                item.save()
+                context['exito'] = "Se edito correctamente"
     
     return render(request, 'admin.html', context)
 
@@ -83,3 +99,28 @@ def eliminarCarro(request, pk):
 
     context['listado'] = Carro.objects.all()
     return render(request, 'carro.html', context)
+
+def buscarProducto(request, pk):
+    context = {}
+    context['productos'] = Producto.objects.all()
+    context['categoria'] = Categoria.objects.all()
+    try:
+        context['categorias2'] = Categoria.objects.all()
+        context['item'] = Producto.objects.get(pk = pk)
+    except:
+        context['error'] = 'Error al buscar el registro'
+
+    return render(request, 'admin.html', context)
+
+def eliminarProducto(request, pk):
+    productos = Producto.objects.all()
+    context = {'producto': productos}
+    try:
+        item = Producto.objects.get(pk = pk)
+        item.delete()
+        context['exito'] = "El item fue eliminado"
+    except:
+        context['error'] = "El item NO fue eliminado"
+
+    context['productos'] = Producto.objects.all()
+    return render(request, 'admin.html', context)

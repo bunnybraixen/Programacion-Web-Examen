@@ -35,6 +35,7 @@
               <label for="exampleInputEmail1">
                 Nombre
               </label>
+              <input type="hidden" name="txtId" value="0{{item.id}}">
               <input type="text" name="txtNombre" class="form-control" value="{{item.nombre}}" placeholder="ej: 'Fallout 2'" style="color: white; background-color: #121212; border-color: cyan; "/>
             </div>
 
@@ -45,7 +46,7 @@
               <select name="cmbCategoria" class="form-select form-select-md mb-3" aria-label=".form-select-md example" style="color: white; background-color: #121212; border-color: cyan;">
                 <option value=0 selected>Seleccione una categoria...</option>
                 {% for objecto in categoria %}
-                <option value="{{objecto.pk}}">{{objecto.nombre}}</option>
+                <option value="{{objecto.pk}}" {% if objecto.id == item.categoria.id %}selected {% endif %}>{{objecto.nombre}}</option>
                 {% endfor%}
               </select>
             </div>
@@ -110,5 +111,27 @@
 
 {% endblock %}
 {% block listado %}
-
+    <table class="table table-responsive table-striped">
+        <tr>
+            <th>Categoria</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Descripcion</th>
+            <th>Consola</th>
+            <th>Stock</th>
+            <th>Modificar</th>
+            <th>Eliminar</th>
+        </tr>
+    {% for item in productos %}
+        <tr>
+            <td>{{ item.categoria.nombre| title }}</td>
+            <td>{{ item.nombre| capfirst }}</td>
+            <td>{{ item.precio }}</td>
+            <td>{{ item.descripcion }}</td>
+            <td>{{ item.consola }}</td>
+            <td>{{ item.stock }}</td>
+            <td><a href="{% url 'buscarProducto' pk=item.id %}" class="btn btn-warning">Modificar</a></td>
+            <td><a href="{% url 'eliminarProducto' pk=item.id %}" class="btn btn-danger">Eliminar</a></td>
+    {% endfor %}
+    </table>
 {% endblock %}
