@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Producto, Categoria
+from .models import Producto, Categoria, Carro
 # Create your views here.
 def menuPrincipal(request):
     return render(request, 'menuPrincipal.html')
@@ -7,6 +7,20 @@ def menuPrincipal(request):
 def Videojuegos(request):
     productos = Producto.objects.all()
     context = {'productos': productos}
+    if request.method == 'POST':
+        print('HOLA')
+        nombre = request.POST['txtNombre1']
+        consola = request.POST['txtConsola1']
+        precio = request.POST['txtPrecio1']
+
+        if 'btnGuardar' in request.POST:
+            Carro.objects.create(
+                                    nombre=nombre,
+                                    consola=consola,
+                                    precio=precio)
+
+            context['exito'] = "Se ha añadido al carrito!"
+    
     return render(request, 'Videojuegos.html', context)
 
 def Accesorios(request):
@@ -15,23 +29,21 @@ def Accesorios(request):
     return render(request, 'Accesorios.html', context)
 
 
-def Admin(request):
-    categorias = Categoria.objects.all()
-    context = {'categoria': categorias}
-    print('hola')
-
+def admin(request):
+    context = {}
+    context['categoria'] = Categoria.objects.all()
     if request.method == 'POST':
+        context['exito'] = "Hola!"
         print('HOLA')
-        categoria =  request.POST['cmbCategoria']
+        idCategoria =  request.POST['cmbCategoria']
         nombre = request.POST['txtNombre']
         descripcion = request.POST['txtDescripcion']
         consola = request.POST['txtConsola']
         precio = request.POST['txtPrecio']
         stock = request.POST['txtStock']
 
-
         if 'btnGuardar' in request.POST:
-            categoria = categoria.objects.get(categoria= categoria) # buscar obj según id seleccionado
+            categoria = Categoria.objects.get(pk=idCategoria) # buscar obj según id seleccionado
             Producto.objects.create(
                                     nombre=nombre,
                                     categoria=categoria,
@@ -41,8 +53,9 @@ def Admin(request):
                                     stock=stock)
 
             context['exito'] = "Los datos fueron guardados"
-
+    
     return render(request, 'admin.html', context)
+
 
 def Registro(request):
     return render(request, 'Registro.html')
@@ -53,5 +66,20 @@ def Contacto(request):
 
 
 def carro(request):
-    return render(request, 'carro.html')
+    carro = Carro.objects.all()
+    context = {'carro': carro}
+    return render(request, 'carro.html', context)
 
+
+def eliminarCarro(request, pk):
+    carro = Carro.objects.all()
+    context = {'carro': carro}
+    try:
+        item = Carro.objects.get(pk = pk)
+        item.delete()
+        context['exito'] = "El item fue eliminado"
+    except:
+        context['error'] = "El item NO fue eliminado"
+
+    context['listado'] = Carro.objects.all()
+    return render(request, 'carro.html', context)

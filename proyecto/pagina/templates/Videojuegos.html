@@ -2,6 +2,18 @@
 {% block tituloPestana %} Menu Principal {% endblock %}
 {% block tituloPrincipal %} {% endblock %}
 {% block mensaje %}
+{% if exito %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{exito}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+{% if error %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{error}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
 {% endblock %}
 {% block contenido %}
 {% endblock %}
@@ -27,17 +39,27 @@
       
       {% for producto in productos %}
       {% if producto.categoria|slugify == 'videojuegos' %}
+      
         <div class="card col-md-4 col-4 text-center mx-auto mt-2 mb-4">
+          <form class="form" method="post" action="{% url 'Videojuegos' %}" >
+            {% csrf_token %}
           <a href="sl.html">
           <img src="{% static 'Images/juego6.jpg' %}" class="card-img-top img-fluid" alt="...">
           </a>
           <div class="card-body">
-            <h5 class="card-title">{{ producto.nombre}}</h5>
+            <input hidden name="txtNombre1" value={{producto.nombre}}> </input>
+            <input hidden name="txtConsola1" value={{producto.consola}}> </input>
+            <input hidden name="txtPrecio1" value={{producto.precio}}> </input>
+            <h5 name="txtNombre" value={{item.nombre}} class="card-title">{{producto.nombre}}</h5>
             <p class="inline card-text">$</p>
-            <p id= {{ producto.id }} class="inline card-text">{{ producto.precio}}</p>
-            <p class="card-text">{{producto.descripcion}}<br> Stock: {{ producto.stock}} <br> Desarrollador: {{ producto.consola}}</p>
+            <p id={{ producto.id }}  class="inline card-text">{{ producto.precio}}</p>
+            <p class="card-text">{{producto.descripcion}}<br> Stock: {{ producto.stock}} <br>Consola : {{ producto.consola}}</p>
             <div class="d-flex justify-content-center">
-            <a href="#" class="btn btn-primary" style="background-color: rgb(170, 0, 94); border-color: aqua;" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir al carrito</a>
+              
+                <input type="submit" name="btnGuardar" value="Añadir al carrito" class="btn btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+              
+          </input>
+          </form>
           </div>
         </div>
         </div>

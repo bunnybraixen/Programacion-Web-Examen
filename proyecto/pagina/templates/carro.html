@@ -2,13 +2,25 @@
 {% block tituloPestana %} Menu Principal {% endblock %}
 {% block tituloPrincipal %} {% endblock %}
 {% block mensaje %}
+{% if exito %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{exito}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+{% if error %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{error}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
 {% endblock %}
 {% block contenido %}
 {% endblock %}
 {% block listado %}
 {% load static %}
 
-  <script src="{% static 'Images/carro.js' %}"></script>
+<script src="{% static 'Images/carro.js' %}"></script>
   <div class="container h-100 py-5">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-10">
@@ -19,7 +31,8 @@
           <div>
           </div>
         </div>
-
+        {% for carro in carro %}
+        
         <div class="card mb-4">
           <div class="card-body p-4">
             <div class="row d-flex justify-content-between align-items-center">
@@ -29,8 +42,8 @@
                   class="img-fluid" alt="...">
               </div>
               <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2">Ratchet and Clank: Rift Apart</p>
-                <p><span class="text-muted">Consola: </span>PS5
+                <p class="lead fw-normal mb-2">{{ carro.nombre}}</p>
+                <p><span class="text-muted">Consola: </span>{{ carro.consola}}
               </div>
               <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
 
@@ -40,102 +53,18 @@
               </div>
               <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                 <p class="inline card-text">$</p>
-            <p id="precio" class="inline card-text">19.990</p>
+                <p id={{ carro.id }} class="inline card-text">{{ carro.id}}</p>
               </div>
-              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card mb-4">
-          <div class="card-body p-4">
-            <div class="row d-flex justify-content-between align-items-center">
-              <div class="col-md-2 col-lg-2 col-xl-2">
-                <img
-                src="{% static 'Images/juego5_.jpg' %}"
-                  class="img-fluid" alt="...">
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2">Final Fantasy VII: Rebirth</p>
-                <p><span class="text-muted">Consola: </span>PS5
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-
-                <input id="form1" min="0" name="quantity" value="1" type="number"
-                  class="form-control form-control-sm" />
-
-              </div>
-              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <p class="inline card-text">$</p>
-            <p id="precio4" class="inline card-text">56.990</p>
-              </div>
-              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+              <div class="col-md-2 col-lg-2 col-xl-2 text-end">
+                <td><a href="{% url 'eliminarCarro' pk=carro.id %}" class="btn btn-danger">Eliminar</a></td>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="card mb-4">
-          <div class="card-body p-4">
-            <div class="row d-flex justify-content-between align-items-center">
-              <div class="col-md-2 col-lg-2 col-xl-2">
-                <img
-                src="{% static 'Images/juego.jpg' %}"
-                  class="img-fluid" alt="...">
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2">The Last of Us. Part I</p>
-                <p><span class="text-muted">Consola: </span>PS5
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-
-                <input id="form1" min="0" name="quantity" value="1" type="number"
-                  class="form-control form-control-sm" />
-
-              </div>
-              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <p class="inline card-text">$</p>
-            <p id="precio3" class="inline card-text">49.990</p>
-              </div>
-              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card mb-4">
-          <div class="card-body p-4">
-            <div class="row d-flex justify-content-between align-items-center">
-              <div class="col-md-2 col-lg-2 col-xl-2">
-                <img
-                src="{% static 'Images/juego2_.jpg' %}"
-                  class="img-fluid" alt="...">
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2">Star Ocean: The Second Story R</p>
-                <p><span class="text-muted">Consola: </span>PS5
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+      
+    {% endfor %}
 
 
-                <input id="form1" min="0" name="quantity" value="1" type="number"
-                  class="form-control form-control-sm" />
-
-              </div>
-              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <p class="inline card-text">$</p>
-            <p id="precio2" class="inline card-text">29.990</p>
-              </div>
-              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <div class="card mb-4">
           <div class="card-body p-4 d-flex flex-row">

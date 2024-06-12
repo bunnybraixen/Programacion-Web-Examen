@@ -21,14 +21,13 @@ class Accesorios(models.Model):
     stock      = models.IntegerField()
 
 class Carro(models.Model):
-    nombre      = models.CharField(max_length=10, unique=True)
-    categoria   = models.ForeignKey('Categoria', on_delete=models.CASCADE)
-    descripcion  = models.CharField(max_length=500)
+    nombre      = models.CharField(max_length=100)
     consola   = models.CharField(max_length=50)
     precio   = models.CharField(max_length=50)
-    stock      = models.IntegerField()
+    
     def __str__(self):
         return self.nombre
+    
 class Categoria(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
 
