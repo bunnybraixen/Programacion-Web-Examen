@@ -40,16 +40,17 @@
       {% for producto in productos %}
       {% if producto.categoria|slugify == 'accesorios' %}
        
-      <div class="card col-md-4 col-4 text-center mx-auto mt-2 mb-4">
-        <form class="form" method="post" action="{% url 'Videojuegos' %}" >
+      <div class="card col-md-4 col-12 text-center mx-auto mt-2 mb-4">
+        <form class="form" method="post" action="{% url 'Accesorios' %}" >
           {% csrf_token %}
         <a href="sl.html">
-        <img src="{% static 'Images/juego6.jpg' %}" class="card-img-top img-fluid" alt="...">
+        <img src="static/{{producto.imagen}}" class="card-img-top img-fluid" alt="...">
         </a>
         <div class="card-body">
           <input hidden name="txtNombre1" value="{{producto.nombre}}"></input>
           <input hidden name="txtConsola1" value={{producto.consola}}></input>
           <input hidden name="txtPrecio1" value={{producto.precio}}></input>
+          <input hidden name="txtImagen1" value={{producto.imagen}}></input>
           <h5 name="txtNombre" value={{item.nombre}} class="card-title">{{producto.nombre}}</h5>
           <p class="inline card-text">$</p>
           <p id={{ producto.id }}  class="inline card-text">{{producto.precio}}</p>

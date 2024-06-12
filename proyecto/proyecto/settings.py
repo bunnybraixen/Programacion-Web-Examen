@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-x60$_g2v7)+n-!d08)_!&(7nqgk&my$sw^7=)(6+gh@(7i2+k=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+
 ALLOWED_HOSTS = []
 
 
@@ -40,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pagina'
 ]
+
+MEDIA_URL = '/pagina/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'pagina/static')
 STATIC_URL = '/static/'
 
 STATICFILES_DIR = [

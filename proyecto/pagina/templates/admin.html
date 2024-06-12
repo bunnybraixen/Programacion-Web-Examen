@@ -18,7 +18,7 @@
 {% block contenido %}
 {% load static %}
 
-<form class="form" method="post" action="{% url 'admin' %}" >
+<form class="form" method="post" enctype="multipart/form-data" action="{% url 'admin' %}" >
   {% csrf_token %}
   <script src="{% static 'Images/admin.js' %}"></script>
     <!--signin-->
@@ -91,7 +91,10 @@
               </label>
               <input type="text" name="txtPrecio" class="form-control" id="txtEmail" value="{{item.precio}}"  placeholder="ej: '29.990'" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
-
+            <div class="form-group mb-4">
+              <label for="exampleFormControlFile1">Imagen</label>
+              <input type="file" class="form-control-file" name="txtImagen" value="{{item.imagen}}" id="exampleFormControlFile1" style="color: white; background-color: #121212; border-color: cyan;">
+            </div>
             <input type="submit" name="btnGuardar" value="Guardar" class="btn btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">
               
           </input>
@@ -103,9 +106,6 @@
    
     </div>
   </form>
-
-
-
 
 
 

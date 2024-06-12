@@ -8,6 +8,7 @@ class Producto(models.Model):
     consola   = models.CharField(max_length=50)
     precio   = models.CharField(max_length=50)
     stock      = models.IntegerField()
+    imagen = models.FileField(upload_to='Images/', default='Images/juego6.jpg')
     
     def __str__(self):
         return self.nombre
@@ -24,6 +25,7 @@ class Carro(models.Model):
     nombre      = models.CharField(max_length=100)
     consola   = models.CharField(max_length=50)
     precio   = models.CharField(max_length=50)
+    imagen = models.FileField(upload_to='imagenes/', default='Images/juego6.jpg')
     
     def __str__(self):
         return self.nombre

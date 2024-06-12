@@ -12,21 +12,37 @@ def Videojuegos(request):
         nombre = request.POST['txtNombre1']
         consola = request.POST['txtConsola1']
         precio = request.POST['txtPrecio1']
-
+        imagen = request.POST['txtImagen1']
         if 'btnGuardar' in request.POST:
             Carro.objects.create(
                                     nombre=nombre,
                                     consola=consola,
-                                    precio=precio)
+                                    precio=precio,
+                                    imagen=imagen)
 
             context['exito'] = "Se ha añadido al carrito!"
     
-    return render(request, 'Videojuegos.html', context)
+    return render(request, 'videojuegos.html', context)
 
 def Accesorios(request):
     productos = Producto.objects.all()
     context = {'productos': productos}
-    return render(request, 'Accesorios.html', context)
+    if request.method == 'POST':
+        print('HOLA')
+        nombre = request.POST['txtNombre1']
+        consola = request.POST['txtConsola1']
+        precio = request.POST['txtPrecio1']
+        imagen = request.POST['txtImagen1']
+        if 'btnGuardar' in request.POST:
+            Carro.objects.create(
+                                    nombre=nombre,
+                                    consola=consola,
+                                    precio=precio,
+                                    imagen=imagen)
+
+            context['exito'] = "Se ha añadido al carrito!"
+    
+    return render(request, 'accesorios.html', context)
 
 
 def admin(request):
@@ -43,6 +59,7 @@ def admin(request):
         consola = request.POST['txtConsola']
         precio = request.POST['txtPrecio']
         stock = request.POST['txtStock']
+        imagen = request.FILES['txtImagen']
         
             
         if 'btnGuardar' in request.POST:
@@ -55,7 +72,8 @@ def admin(request):
                                         descripcion=descripcion,
                                         consola=consola,
                                         precio=precio,
-                                        stock=stock)
+                                        stock=stock,
+                                        imagen=imagen)
 
                 context['exito'] = "Los datos fueron guardados"
             else:
@@ -67,6 +85,7 @@ def admin(request):
                 item.consola = consola
                 item.precio = precio
                 item.stock = stock
+                item.imagen = imagen
                 item.save()
                 context['exito'] = "Se edito correctamente"
     
