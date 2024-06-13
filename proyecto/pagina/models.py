@@ -35,3 +35,16 @@ class Categoria(models.Model):
 
     def __str__(self):
         return self.nombre
+    
+class Usuario(models.Model):
+    nombre      = models.CharField(max_length=100, unique=True)
+    rut   = models.CharField(max_length=30)
+    correo  = models.CharField(max_length=500)
+    telefono   = models.CharField(max_length=50)
+    nacimiento   = models.CharField(max_length=50)
+    direccion      = models.CharField(max_length=300)
+    contraseña = models.CharField(max_length=100)
+    region = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nombre

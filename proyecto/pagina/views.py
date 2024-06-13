@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Producto, Categoria, Carro
+from .models import Producto, Categoria, Carro, Usuario
 # Create your views here.
 def menuPrincipal(request):
     return render(request, 'menuPrincipal.html')
@@ -143,3 +143,73 @@ def eliminarProducto(request, pk):
 
     context['productos'] = Producto.objects.all()
     return render(request, 'admin.html', context)
+
+
+def Registro(request):
+    context = {}
+    if request.method == 'POST':
+        
+        
+            
+        if 'btnGuardar' in request.POST:
+            context['exito'] = "Hola!"
+            print('HOLA')
+            id = request.POST['txtId']
+            nombre = request.POST['txtNombre']
+            rut =  request.POST['txtRut']
+            correo = request.POST['txtCorreo']
+            telefono = request.POST['txtTelefono']
+            nacimiento = request.POST['txtNacimiento']
+            direccion = request.POST['txtDireccion']
+            contraseña = request.POST['txtContraseña']
+            region = request.POST['cmbRegion']
+            if id== "0":
+                
+                Usuario.objects.create(
+                                        nombre=nombre,
+                                        rut=rut,
+                                        correo=correo,
+                                        telefono=telefono,
+                                        nacimiento=nacimiento,
+                                        direccion=direccion,
+                                        contraseña=contraseña,
+                                        region=region)
+
+                context['exito'] = "La cuenta ha sido registrada"
+            else:
+                item=Usuario()
+                item.id = id
+                item.nombre = nombre
+                item.rut = rut
+                item.correo = correo
+                item.telefono = telefono
+                item.nacimiento = nacimiento
+                item.direccion = direccion
+                item.contraseña = contraseña
+                item.region=region
+                item.save()
+                context['exito'] = "Se edito correctamente"
+    
+    return render(request, 'Registro.html', context)
+
+def Login(request):
+    context = {}
+    if request.method == 'POST':
+        
+            
+        if 'btnGuardar1' in request.POST:
+                correo = request.POST['loginCorreo']
+                contraseña = request.POST['loginClave']
+                try: 
+                    categoria = Usuario.objects.get(correo=correo)
+                    if categoria.correo == correo:
+                        if categoria.contraseña == contraseña:
+                            context['exito'] = 'Ha ingresado con exito'
+                        else:
+                            context['error'] = 'La contraseña ingresada no coincide con la registrada'
+                    else:
+                        context['error'] = 'El usuario ingresado no coincide con ninguno en la base de datos'
+                except:
+                    context['error'] = 'El usuario ingresado no coincide con ninguno en la base de datos'
+    
+    return render(request, 'Registro.html', context)

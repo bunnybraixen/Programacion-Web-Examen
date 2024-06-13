@@ -36,14 +36,14 @@
                 Nombre
               </label>
               <input type="hidden" name="txtId" value="0{{item.id}}">
-              <input type="text" name="txtNombre" class="form-control" value="{{item.nombre}}" placeholder="ej: 'Fallout 2'" style="color: white; background-color: #121212; border-color: cyan; "/>
+              <input type="text" name="txtNombre" class="txtNombre form-control" value="{{item.nombre}}" placeholder="ej: 'Fallout 2'" style="color: white; background-color: #121212; border-color: cyan; "/>
             </div>
 
             <div class="form-group mb-4">
               <label for="exampleInputEmail1">
                 Categoria<br>
               </label>
-              <select name="cmbCategoria" class="form-select form-select-md mb-3" aria-label=".form-select-md example" style="color: white; background-color: #121212; border-color: cyan;">
+              <select name="cmbCategoria" class="txtCategoria form-select form-select-md mb-3" aria-label=".form-select-md example" style="color: white; background-color: #121212; border-color: cyan;">
                 <option value=0 selected>Seleccione una categoria...</option>
                 {% for objecto in categoria %}
                 <option value="{{objecto.pk}}" {% if objecto.id == item.categoria.id %}selected {% endif %}>{{objecto.nombre}}</option>
@@ -55,7 +55,7 @@
               <label for="exampleInputPassword1">
                 Descripcion
               </label>
-              <input type="text" class="form-control" name="txtDescripcion" value="{{item.descripcion}}" placeholder="ej: Juego muy divertido" id="exampleInputPassword1" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="text" class="txtDescripcion form-control" name="txtDescripcion" value="{{item.descripcion}}" placeholder="ej: Juego muy divertido" id="exampleInputPassword1" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
 
 
@@ -73,7 +73,7 @@
               </label>
 
               <input name="txtStock" min="0" value="{{item.stock}}"  type="number"
-                  class="form-control form-control" style="color: white; background-color: #121212; border-color: cyan;" />
+                  class="txtStock form-control form-control" style="color: white; background-color: #121212; border-color: cyan;" />
 
               </div>
 
@@ -81,7 +81,7 @@
               <label for="exampleInputEmail1">
                 Consola
               </label>
-              <input type="text" name="txtConsola" class="form-control" id="exampleInputEmail1" value="{{item.consola}}" placeholder="ej: 'PS5'" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="text" name="txtConsola" class="txtConsola form-control" id="exampleInputEmail1" value="{{item.consola}}" placeholder="ej: 'PS5'" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
 
 
@@ -89,25 +89,46 @@
               <label for="exampleInputEmail1">
                 Precio
               </label>
-              <input type="text" name="txtPrecio" class="form-control" id="txtEmail" value="{{item.precio}}"  placeholder="ej: '29.990'" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="text" name="txtPrecio" class="txtPrecio form-control" id="txtEmail" value="{{item.precio}}"  placeholder="ej: '29.990'" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
             <div class="form-group mb-4">
               <label for="exampleFormControlFile1">Imagen</label>
-              <input type="file" class="form-control-file" name="txtImagen" value="{{item.imagen}}" id="exampleFormControlFile1" style="color: white; background-color: #121212; border-color: cyan;">
+              <input type="file" class="txtImagen form-control-file" name="txtImagen" value="{{item.imagen}}" id="exampleFormControlFile1" style="color: white; background-color: #121212; border-color: cyan;">
             </div>
-            <input type="submit" name="btnGuardar" value="Guardar" class="btn btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">
-              
+
+            <input type="button" name="btnEnviar" class="btnEnviar" value="Guardar" style="color: white; background-color: cyan; color: purple; border-color: purple;">
           </input>
+
             
+              
 
          
         </div>
       </div>
    
     </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content" style="color: white; background-color: #121212;">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5"  id="exampleModalLabel">Añadir al carrito</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" >
+            ¿Seguro que desea añadir al carrito?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <input type="submit" name="btnGuardar" value="Guardar" class="btn btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+          </input>
+          </div>
+        </div>
+      </div>
+      
+    </div>
   </form>
 
-
+ 
 
 {% endblock %}
 {% block listado %}

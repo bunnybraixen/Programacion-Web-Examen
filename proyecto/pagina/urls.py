@@ -8,6 +8,7 @@ urlpatterns = [
     path('Videojuegos', views.Videojuegos, name='Videojuegos'), 
     path('Accesorios', views.Accesorios, name='Accesorios'), 
     path('Registro', views.Registro, name='Registro'), 
+    path('Login', views.Login, name='Login'), 
     path('Contacto', views.Contacto, name='Contacto'), 
     path('carro', views.carro, name='carro'),
     path('carro <str:pk>', views.eliminarCarro, name='eliminarCarro'), 

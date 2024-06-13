@@ -2,6 +2,18 @@
 {% block tituloPestana %} Menu Principal {% endblock %}
 {% block tituloPrincipal %} {% endblock %}
 {% block mensaje %}
+{% if exito %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{exito}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+{% if error %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{error}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
 {% endblock %}
 {% block contenido %}
 {% endblock %}
@@ -14,7 +26,8 @@
 
         <!--signin-->
         <div class="col-10 col-md-4 mt-5">
-          <form role="form">
+          <form class="form" method="post" action="{% url 'Login' %}">
+            {% csrf_token %}
 
             <div class="form-group mb-4">
                <b>¿Ya tienes una cuenta?</b>
@@ -22,14 +35,14 @@
               <label for="exampleInputEmail1">
                 Correo Electronico
               </label>
-              <input type="email" class="loginEmail form-control" id="exampleInputEmail1" placeholder="ejemplo@email.com" style="color: white; background-color: #121212; border-color: cyan; "/>
+              <input type="email" name="loginCorreo" class="loginEmail form-control" id="exampleInputEmail1" placeholder="ejemplo@email.com" style="color: white; background-color: #121212; border-color: cyan; "/>
             </div>
 
             <div class="form-group mb-3">
               <label for="exampleInputPassword1">
                 Contraseña
               </label>
-              <input type="password" class="loginClave form-control" id="exampleInputPassword1" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="password" name="loginClave" class="loginClave form-control" id="exampleInputPassword1" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
 
             <div class="checkbox2 m-3" style="font-size:12px;">
@@ -38,18 +51,37 @@
               </label>
             </div>
 
-            <button type="button" class="btnLogin btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">
-              Iniciar Sesion
-            </button>
+            <input type="button" name="btnLogin" class="btnLogin" value="Ingresar" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+          </input>
 
+            </div>
+            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content" style="color: white; background-color: #121212;">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5"  id="exampleModalLabel">Añadir al carrito</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body" >
+                    ¿Seguro que desea hacer login?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <input type="submit" name="btnGuardar1" value="Guardar" class="btn btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+                  </input>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
           </form>
-        </div>
 
-        <div class="col-12 col-md-1 m-4"></div>
+        
 
         <!--registro-->
         <div class="col-10 col-md-4 m-4 mb-5 mt-md-5 ">
-          <form role="form">
+          <form class="form" method="post" action="{% url 'Registro' %}">
+            {% csrf_token %}
             
             <div class="form-group mb-4">
               <b>¿Nuevo Usuario?</b>
@@ -57,14 +89,15 @@
               <label for="exampleInputEmail1">
                 Nombre de Usuario
               </label>
-              <input type="" class="txtUsuario form-control" id="exampleInputEmail1" placeholder="Usuario" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="hidden" name="txtId" value="0{{item.id}}">
+              <input type="" name="txtNombre" class="txtUsuario form-control" id="exampleInputEmail1" placeholder="Usuario" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
 
             <div class="form-group mb-4">
               <label for="exampleInputEmail1">
                 RUT
               </label>
-              <input type="" class="txtRut form-control" id="exampleInputEmail1" placeholder="12.345.678-9" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="" name="txtRut" class="txtRut form-control" id="exampleInputEmail1" placeholder="12.345.678-9" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
 
 
@@ -72,21 +105,21 @@
               <label for="exampleInputEmail1">
                 Correo Electronico
               </label>
-              <input type="email" class="txtEmail form-control" id="txtEmail" placeholder="ejemplo@email.com" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="email" name="txtCorreo" class="txtEmail form-control" id="txtEmail" placeholder="ejemplo@email.com" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
 
             <div class="form-group mb-4">
               <label for="exampleInputEmail1">
                 Telefono
               </label>
-              <input type="" class="txtTelefono form-control" id="exampleInputEmail1" placeholder="+56 1 2345 6789" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="" name="txtTelefono" class="txtTelefono form-control" id="exampleInputEmail1" placeholder="+56 1 2345 6789" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
 
             <div class="form-group mb-4">
               <label for="exampleInputEmail1">
                 Fecha de Nacimiento
               </label>
-              <input type="" class="txtFechaNacimiento form-control" id="exampleInputEmail1" placeholder="12/13/2014" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="" name="txtNacimiento" class="txtFechaNacimiento form-control" id="exampleInputEmail1" placeholder="12/13/2014" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
 
             
@@ -94,7 +127,7 @@
               <label for="exampleInputEmail1">
                 Direccion
               </label>
-              <input type="" class="txtDireccion form-control" id="exampleInputEmail1" placeholder="Calle Larga 1234" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="" name="txtDireccion" class="txtDireccion form-control" id="exampleInputEmail1" placeholder="Calle Larga 1234" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
 
             
@@ -103,7 +136,7 @@
               <label for="exampleInputEmail1">
                 Region<br>
               </label>
-              <select class="txtRegion form-select form-select-md mb-3" aria-label=".form-select-md example" style="color: white; background-color: #121212; border-color: cyan;">
+              <select name="cmbRegion" class="txtRegion form-select form-select-md mb-3" aria-label=".form-select-md example" style="color: white; background-color: #121212; border-color: cyan;">
                 <option selected>Seleccione una region...</option>
                 <option value="Arica">Arica</option>
                 <option value="Tarapaca">Tarapaca</option>
@@ -129,7 +162,7 @@
               <label for="exampleInputPassword1">
                 Contraseña
               </label>
-              <input type="password" class="txtClave form-control" id="txtClave" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="password" name="txtContraseña" class="txtClave form-control" id="txtClave" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
             
             <div class="form-group mb-3">
@@ -147,17 +180,34 @@
               </label>
             </div> 
 
-            <button type="button" class="btnEnviar btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">
-              Registrarme
-            </button>
+            <input type="button" name="btnEnviar" class="btnEnviar" value="Registrarme" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+          </input>
 
-          </form>
         </div>
       </div>
 
     </div>
 
-
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content" style="color: white; background-color: #121212;">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5"  id="exampleModalLabel">Añadir al carrito</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" >
+            ¿Seguro que desea registrarse?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <input type="submit" name="btnGuardar" value="Guardar" class="btn btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+          </input>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </form>
 
 
 

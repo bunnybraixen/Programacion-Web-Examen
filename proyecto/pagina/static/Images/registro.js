@@ -21,7 +21,8 @@ $(function(){
         }
 
         else {
-            alert("Los datos enviados son: "+ $('.loginEmail').val() + '\n' + $('.loginClave').val())
+
+            $(exampleModal1).modal('show'); 
 
        }
     })
@@ -112,7 +113,7 @@ else if (!(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,50}$/.test($('.
    }
    
 else {
-            alert("Los datos enviados son: "+ $('.txtEmail').val() + '\n' + $('.txtClave').val() + '\n' + $('.txtRegion').val() + '\n' + $('.txtRut').val()+ '\n' + $('.txtUsuario').val() + '\n' + $('.txtTelefono').val()  + '\n' + $('.txtFechaNacimiento').val()+ '\n' + $('.txtDireccion').val()  )
+    $(exampleModal).modal('show'); 
 
        }
 
