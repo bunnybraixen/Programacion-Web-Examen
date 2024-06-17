@@ -169,8 +169,9 @@
             </ul>
           </div>
         <!--barra busqueda-->
-        <form class="d-flex col-5 col-md-4" role="search">
-          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+        <form class="form d-flex col-5 col-md-4" role="search" method="post" action="{% url 'busqueda' %}">
+          {% csrf_token %}
+          <input class="form-control me-2" name="txtBusqueda" type="search" placeholder="Buscar" aria-label="Search">
           <button class="btn" type="submit" style="color: purple; background-color: cyan;">Buscar</button>
         </form>
         <!--carrito-->

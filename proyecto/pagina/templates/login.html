@@ -1,0 +1,32 @@
+{% extends "plantillaBase.html"  %}
+{% block tituloPestana %} Menu Principal {% endblock %}
+{% block tituloPrincipal %} {% endblock %}
+{% block mensaje %}
+{% endblock %}
+{% block contenido %}
+{% endblock %}
+{% block listado %}
+{% load static %}
+    <div>
+                    <div class="container mt-5 justify-content-center">
+                        <div class="row">
+                <div>
+                  <div class="justify-content-center text-center">
+                    <h1>Ha ingresado correctamente, bienvenido {{item.nombre}} </h1>
+                    <p>Correo: {{item.correo}}</p>
+                    <p>Rut: {{item.rut}}</p>
+                    <p>Telefono: {{item.telefono}}</p>
+                    <p>Fecha de Nacimiento: {{item.nacimiento}}</p>
+                    <p>Direccion: {{item.direccion}}</p>
+                    <p>Region: {{item.region}}</p>
+                    <p>Imagen:</p>
+                    <img src="static/{{item.imagen}}" class="card-img-top img-fluid" alt="...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+{% endblock %}

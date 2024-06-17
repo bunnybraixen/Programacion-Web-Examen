@@ -16,8 +16,6 @@
 {% endif %}
 {% endblock %}
 {% block contenido %}
-{% endblock %}
-{% block listado %}
 {% load static %}
 <script src="{% static 'Images/registro.js' %}"></script>
     <!--signin-->
@@ -80,7 +78,7 @@
 
         <!--registro-->
         <div class="col-10 col-md-4 m-4 mb-5 mt-md-5 ">
-          <form class="form" method="post" action="{% url 'Registro' %}">
+          <form class="form" method="post" enctype="multipart/form-data" action="{% url 'Registro' %}">
             {% csrf_token %}
             
             <div class="form-group mb-4">
@@ -90,14 +88,14 @@
                 Nombre de Usuario
               </label>
               <input type="hidden" name="txtId" value="0{{item.id}}">
-              <input type="" name="txtNombre" class="txtUsuario form-control" id="exampleInputEmail1" placeholder="Usuario" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="" name="txtNombre" value="{{item.nombre}}" class="txtUsuario form-control" id="exampleInputEmail1" placeholder="Usuario" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
 
             <div class="form-group mb-4">
               <label for="exampleInputEmail1">
                 RUT
               </label>
-              <input type="" name="txtRut" class="txtRut form-control" id="exampleInputEmail1" placeholder="12.345.678-9" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="" name="txtRut" value="{{item.rut}}"  class="txtRut form-control" id="exampleInputEmail1" placeholder="12.345.678-9" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
 
 
@@ -105,21 +103,21 @@
               <label for="exampleInputEmail1">
                 Correo Electronico
               </label>
-              <input type="email" name="txtCorreo" class="txtEmail form-control" id="txtEmail" placeholder="ejemplo@email.com" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="email" name="txtCorreo" value="{{item.correo}}"  class="txtEmail form-control" id="txtEmail" placeholder="ejemplo@email.com" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
 
             <div class="form-group mb-4">
               <label for="exampleInputEmail1">
                 Telefono
               </label>
-              <input type="" name="txtTelefono" class="txtTelefono form-control" id="exampleInputEmail1" placeholder="+56 1 2345 6789" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="" name="txtTelefono" value="{{item.telefono}}"  class="txtTelefono form-control" id="exampleInputEmail1" placeholder="+56 1 2345 6789" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
 
             <div class="form-group mb-4">
               <label for="exampleInputEmail1">
                 Fecha de Nacimiento
               </label>
-              <input type="" name="txtNacimiento" class="txtFechaNacimiento form-control" id="exampleInputEmail1" placeholder="12/13/2014" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="" name="txtNacimiento" value="{{item.nacimiento}}" class="txtFechaNacimiento form-control" id="exampleInputEmail1" placeholder="12/13/2014" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
 
             
@@ -127,7 +125,7 @@
               <label for="exampleInputEmail1">
                 Direccion
               </label>
-              <input type="" name="txtDireccion" class="txtDireccion form-control" id="exampleInputEmail1" placeholder="Calle Larga 1234" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="" name="txtDireccion" value="{{item.direccion}}"  class="txtDireccion form-control" id="exampleInputEmail1" placeholder="Calle Larga 1234" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
 
             
@@ -136,7 +134,7 @@
               <label for="exampleInputEmail1">
                 Region<br>
               </label>
-              <select name="cmbRegion" class="txtRegion form-select form-select-md mb-3" aria-label=".form-select-md example" style="color: white; background-color: #121212; border-color: cyan;">
+              <select name="cmbRegion" value="{{item.region}}"  class="txtRegion form-select form-select-md mb-3" aria-label=".form-select-md example" style="color: white; background-color: #121212; border-color: cyan;">
                 <option selected>Seleccione una region...</option>
                 <option value="Arica">Arica</option>
                 <option value="Tarapaca">Tarapaca</option>
@@ -162,7 +160,7 @@
               <label for="exampleInputPassword1">
                 Contraseña
               </label>
-              <input type="password" name="txtContraseña" class="txtClave form-control" id="txtClave" style="color: white; background-color: #121212; border-color: cyan;"/>
+              <input type="password" name="txtContraseña"  value="{{item.contraseña}}"  class="txtClave form-control" id="txtClave" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
             
             <div class="form-group mb-3">
@@ -172,7 +170,10 @@
               <input type="password" class="txtClaveVer form-control" id="txtClave" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
             
-
+            <div class="form-group mb-4">
+              <label for="exampleFormControlFile1">Imagen de usuario</label>
+              <input type="file" class="txtImagen form-control-file" name="txtImagen" value="{{item.imagen}}" id="exampleFormControlFile1" style="color: white; background-color: #121212; border-color: cyan;">
+            </div>
 
             <div class="checkbox m-3" style="font-size:12px;">
               <label>
@@ -214,4 +215,26 @@
     
   </body>
 </html>
+{% endblock %}
+{% block listado %}
+<div class="row">
+  <div class="col-12">
+      <table class="table table-responsive">
+          <tr>
+              <th>Email</th>
+              <th>Nombre</th>
+              <th>Modificar</th>
+              <th>Eliminar</th>
+          </tr>
+{% for usuario in listado %}
+          <tr>
+              <td>{{usuario.correo}}</td>
+              <td>{{usuario.nombre}}</td>
+              <td><a href="{% url 'buscarUsuario' pk=usuario.pk %}">Modificar</a></td>
+              <td><a href="{% url 'eliminarUsuario' pk=usuario.pk %}" class="btn btn-danger">Eliminar</a></td>
+          </tr>
+{% endfor %}
+      </table>
+  </div>
+</div>
 {% endblock %}

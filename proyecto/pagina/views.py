@@ -148,9 +148,6 @@ def eliminarProducto(request, pk):
 def Registro(request):
     context = {}
     if request.method == 'POST':
-        
-        
-            
         if 'btnGuardar' in request.POST:
             context['exito'] = "Hola!"
             print('HOLA')
@@ -163,6 +160,7 @@ def Registro(request):
             direccion = request.POST['txtDireccion']
             contraseña = request.POST['txtContraseña']
             region = request.POST['cmbRegion']
+            imagen = request.FILES['txtImagen']
             if id== "0":
                 
                 Usuario.objects.create(
@@ -173,7 +171,8 @@ def Registro(request):
                                         nacimiento=nacimiento,
                                         direccion=direccion,
                                         contraseña=contraseña,
-                                        region=region)
+                                        region=region,
+                                        imagen=imagen)
 
                 context['exito'] = "La cuenta ha sido registrada"
             else:
@@ -187,9 +186,10 @@ def Registro(request):
                 item.direccion = direccion
                 item.contraseña = contraseña
                 item.region=region
+                item.imagen=imagen
                 item.save()
                 context['exito'] = "Se edito correctamente"
-    
+    context['listado'] = Usuario.objects.all()
     return render(request, 'Registro.html', context)
 
 def Login(request):
@@ -204,12 +204,66 @@ def Login(request):
                     categoria = Usuario.objects.get(correo=correo)
                     if categoria.correo == correo:
                         if categoria.contraseña == contraseña:
+                            context['item'] = Usuario.objects.get(correo=correo)
                             context['exito'] = 'Ha ingresado con exito'
+                            return render(request, 'login.html', context)
                         else:
                             context['error'] = 'La contraseña ingresada no coincide con la registrada'
+                            return render(request, 'Registro.html', context)
                     else:
                         context['error'] = 'El usuario ingresado no coincide con ninguno en la base de datos'
+                        return render(request, 'Registro.html', context)
                 except:
                     context['error'] = 'El usuario ingresado no coincide con ninguno en la base de datos'
+                    context['listado'] = Usuario.objects.all()
+                    return render(request, 'Registro.html', context)
     
-    return render(request, 'Registro.html', context)
+
+def buscarUsuario(request, pk):
+    context = {}
+    try:
+        context['item'] = Usuario.objects.get(pk=pk)
+    except:
+        context['error'] = 'Error al buscar el registro'
+    context['id'] = pk    
+    context['listado'] = Usuario.objects.all()
+    return render(request, 'registro.html', context)
+
+def eliminarUsuario(request, pk):
+    context = {}
+    try:
+        item = Usuario.objects.get(pk = pk)
+        item.delete()
+        context['exito'] = "El item fue eliminado"
+    except:
+        context['error'] = "El item NO fue eliminado"
+
+    context['listado'] = Usuario.objects.all()
+    return render(request, 'registro.html', context)
+
+def busqueda(request):
+    productos = Producto.objects.all()
+    context = {'productos': productos}
+    context['nombre'] = request.POST['txtBusqueda']
+    
+    return render(request, 'busqueda.html', context)
+
+
+def busquedaCarro(request):
+    
+    productos = Producto.objects.all()
+    context = {'productos': productos}
+    nombre = request.POST['txtNombre1']
+    consola = request.POST['txtConsola1']
+    precio = request.POST['txtPrecio1']
+    imagen = request.POST['txtImagen1']
+    Carro.objects.create(
+                                    nombre=nombre,
+                                    consola=consola,
+                                    precio=precio,
+                                    imagen=imagen)
+
+    context['exito'] = "Se ha añadido al carrito!"
+    carro = Carro.objects.all()
+    context = {'carro': carro}
+    return render(request, 'carro.html', context)

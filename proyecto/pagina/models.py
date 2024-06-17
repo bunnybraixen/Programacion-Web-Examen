@@ -45,6 +45,7 @@ class Usuario(models.Model):
     direccion      = models.CharField(max_length=300)
     contraseña = models.CharField(max_length=100)
     region = models.CharField(max_length=100)
+    imagen = models.FileField(upload_to='imagenes/', default='Images/juego6.jpg')
 
     def __str__(self):
         return self.nombre
