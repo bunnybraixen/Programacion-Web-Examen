@@ -20,6 +20,7 @@
 {% block listado %}
 {% load static %}
 
+
 <script src="{% static 'Images/carro.js' %}"></script>
   <div class="container h-100 py-5">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -44,12 +45,6 @@
               <div class="col-md-3 col-lg-3 col-xl-3">
                 <p class="lead fw-normal mb-2">{{ carro.nombre}}</p>
                 <p><span class="text">Consola: </span>{{ carro.consola}}
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-
-                <input id="form1" min="0" name="quantity" value="1" type="number"
-                  class="form-control form-control-sm" />
-
               </div>
               <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                 <p class="inline card-text">$</p>
@@ -81,8 +76,8 @@
             <p class="lead inline fw-normal mb-2">Total a pagar: $</p>
             <p id="precio5" class="lead inline fw-normal mb-2">0
             </p>
-            <button type="button" class="btn2 btn btn-block btn-lg">Proceder con el pago</button>
-
+            <td><a href="{% url 'eliminarCarroTodo' %}" class="btn2 btn btn-block btn-lg">Proceder con el pago</a></td>
+            
           </div>
         </div>
 

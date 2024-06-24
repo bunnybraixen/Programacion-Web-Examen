@@ -43,10 +43,11 @@
         <div class="card col-md-4 col-12 text-center mx-auto mt-2 mb-4">
           <form class="form" method="post" action="{% url 'Videojuegos' %}" >
           {% csrf_token %}
-          <a href="sl.html">
+          <a href="{% url 'producto' pk=producto.id %}">
           <img src="static/{{producto.imagen}}" class="card-img-top img-fluid" alt="...">
           </a>
           <div class="card-body">
+            <input hidden name="txtId1" value="{{producto.id}}"></input>
             <input hidden name="txtNombre1" value="{{producto.nombre}}"></input>
             <input hidden name="txtConsola1" value={{producto.consola}}></input>
             <input hidden name="txtPrecio1" value={{producto.precio}}></input>
@@ -54,18 +55,20 @@
             <h5 name="txtNombre" value={{item.nombre}} class="card-title">{{producto.nombre}}</h5>
             <p class="inline card-text">$</p>
             <p id={{ producto.id }}  class="inline card-text">{{producto.precio}}</p>
-            <p class="card-text">{{producto.descripcion}}<br> Stock: {{ producto.stock}} <br>Consola : {{ producto.consola}}</p>
+            <p class="card-text"> Stock: {{ producto.stock}} <br>Consola : {{ producto.consola}}</p>
             <div class="d-flex justify-content-center">
-              
-                <input type="submit" name="btnGuardar" value="Añadir al carrito" class="btn btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">
-              
+              {% if producto.stock > 0 %}
+              <input type="submit" name="btnGuardar" value="Añadir al carrito" class="btn btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+              {% endif %}
+              {% if producto.stock == 0 %}
+              <h5 class="card-title">Producto fuera de stock!</h5>
+              {% endif %}
           </input>
           </form>
           </div>
         </div>
         </div>
       {% endif %} 
-      
     {% endfor %}
       </div>
   </div>

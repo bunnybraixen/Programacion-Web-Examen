@@ -93,7 +93,7 @@
 
             <div class="form-group mb-4">
               <label for="exampleInputEmail1">
-                RUT
+                RUT (Sin puntos y con guion)
               </label>
               <input type="" name="txtRut" value="{{item.rut}}"  class="txtRut form-control" id="exampleInputEmail1" placeholder="12.345.678-9" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
@@ -171,8 +171,9 @@
             </div>
             
             <div class="form-group mb-4">
-              <label for="exampleFormControlFile1">Imagen de usuario</label>
+              <label for="exampleFormControlFile1">Imagen de usuario (Opcional) </label>
               <input type="file" class="txtImagen form-control-file" name="txtImagen" value="{{item.imagen}}" id="exampleFormControlFile1" style="color: white; background-color: #121212; border-color: cyan;">
+              <input hidden type="text" class="txtImagen1 form-control-file" name="txtImagen1" value="{{item.imagen}}" id="exampleFormControlFile1" style="color: white; background-color: #121212; border-color: cyan;">
             </div>
 
             <div class="checkbox m-3" style="font-size:12px;">
@@ -221,15 +222,27 @@
   <div class="col-12">
       <table class="table table-responsive">
           <tr>
+              <th>URL Imagen</th>
               <th>Email</th>
               <th>Nombre</th>
+              <th>Rut</th>
+              <th>Direccion</th>
+              <th>Region</th>
+              <th>Telefono</th>
+              <th>Fecha Nacimiento</th>
               <th>Modificar</th>
               <th>Eliminar</th>
           </tr>
 {% for usuario in listado %}
           <tr>
+              <td>{{usuario.imagen}}</td>
               <td>{{usuario.correo}}</td>
               <td>{{usuario.nombre}}</td>
+              <td>{{usuario.rut}}</td>
+              <td>{{usuario.direccion}}</td>
+              <td>{{usuario.region}}</td>
+              <td>{{usuario.telefono}}</td>
+              <td>{{usuario.nacimiento}}</td>
               <td><a href="{% url 'buscarUsuario' pk=usuario.pk %}">Modificar</a></td>
               <td><a href="{% url 'eliminarUsuario' pk=usuario.pk %}" class="btn btn-danger">Eliminar</a></td>
           </tr>

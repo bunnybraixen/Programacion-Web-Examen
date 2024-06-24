@@ -22,6 +22,7 @@ class Accesorios(models.Model):
     stock      = models.IntegerField()
 
 class Carro(models.Model):
+    id2 = models.CharField(max_length=100)
     nombre      = models.CharField(max_length=100)
     consola   = models.CharField(max_length=50)
     precio   = models.CharField(max_length=50)

@@ -94,6 +94,7 @@
             <div class="form-group mb-4">
               <label for="exampleFormControlFile1">Imagen</label>
               <input type="file" class="txtImagen form-control-file" name="txtImagen" value="{{item.imagen}}" id="exampleFormControlFile1" style="color: white; background-color: #121212; border-color: cyan;">
+              <input hidden type="text" class="txtImagen1 form-control-file" name="txtImagen1" value="{{item.imagen}}" id="exampleFormControlFile1" style="color: white; background-color: #121212; border-color: cyan;">
             </div>
 
             <input type="button" name="btnEnviar" class="btnEnviar" value="Guardar" style="color: white; background-color: cyan; color: purple; border-color: purple;">
@@ -134,6 +135,7 @@
 {% block listado %}
     <table class="table table-responsive table-striped">
         <tr>
+            <th>Imagen URL</th>
             <th>Categoria</th>
             <th>Nombre</th>
             <th>Precio</th>
@@ -145,6 +147,7 @@
         </tr>
     {% for item in productos %}
         <tr>
+          <td>{{ item.imagen }}</td>
             <td>{{ item.categoria.nombre| title }}</td>
             <td>{{ item.nombre| capfirst }}</td>
             <td>{{ item.precio }}</td>

@@ -15,6 +15,11 @@ $(function(){
        {
         alert('No especifico el stock')
        }
+
+       else if( $('.txtStock').val() % 1 != 0)
+        {
+         alert('El stock ingresadoo no es valido')
+        }
        else if( $('.txtDescripcion').val() == "")
        {
         alert('No especifico la descripcion')
@@ -57,10 +62,7 @@ else if(!(/^(?:[+\d].*\d|\d)$/.test($('.txtStock').val())))
 alert('El stock ingresado no es valido')
 }
 
-else if( $('.txtImagen').val() == "")
-    {
-     alert('No añadio una imagen')
-    }
+
 
 
 
@@ -76,7 +78,18 @@ else if(!(/^.{3,15}$/.test($('.txtConsola').val())))
 alert('La consola ingresada no es valido, debe ser mayor a 3 y menor a 15 caracteres')
 }
 
-   
+
+else if( $('.txtImagen').val() == "")
+    {
+        if( $('.txtImagen2').val() == 'undefined') {
+            
+            alert('No se ingreso una imagen');
+        }
+        else {
+            $(exampleModal).modal('show'); 
+        }
+    }
+
 else {
     $(exampleModal).modal('show'); 
 

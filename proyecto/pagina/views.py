@@ -9,12 +9,17 @@ def Videojuegos(request):
     context = {'productos': productos}
     if request.method == 'POST':
         print('HOLA')
+        id = request.POST['txtId1']
         nombre = request.POST['txtNombre1']
         consola = request.POST['txtConsola1']
         precio = request.POST['txtPrecio1']
         imagen = request.POST['txtImagen1']
+        item = Producto.objects.get(pk = id)
+        item.stock = item.stock - 1
+        item.save()
         if 'btnGuardar' in request.POST:
             Carro.objects.create(
+                                    id2=id,
                                     nombre=nombre,
                                     consola=consola,
                                     precio=precio,
@@ -29,12 +34,17 @@ def Accesorios(request):
     context = {'productos': productos}
     if request.method == 'POST':
         print('HOLA')
+        id = request.POST['txtId1']
         nombre = request.POST['txtNombre1']
         consola = request.POST['txtConsola1']
         precio = request.POST['txtPrecio1']
         imagen = request.POST['txtImagen1']
+        item = Producto.objects.get(pk = id)
+        item.stock = item.stock - 1
+        item.save()
         if 'btnGuardar' in request.POST:
             Carro.objects.create(
+                                    id2=id,
                                     nombre=nombre,
                                     consola=consola,
                                     precio=precio,
@@ -43,6 +53,7 @@ def Accesorios(request):
             context['exito'] = "Se ha añadido al carrito!"
     
     return render(request, 'accesorios.html', context)
+
 
 
 def admin(request):
@@ -59,7 +70,12 @@ def admin(request):
         consola = request.POST['txtConsola']
         precio = request.POST['txtPrecio']
         stock = request.POST['txtStock']
-        imagen = request.FILES['txtImagen']
+        imagen1 = request.POST['txtImagen1']
+        try: 
+            imagen = request.FILES['txtImagen']
+        except:
+            imagen = ""
+        
         
             
         if 'btnGuardar' in request.POST:
@@ -85,7 +101,10 @@ def admin(request):
                 item.consola = consola
                 item.precio = precio
                 item.stock = stock
-                item.imagen = imagen
+                if imagen == "":
+                    item.imagen = imagen1
+                else:
+                    item.imagen = imagen
                 item.save()
                 context['exito'] = "Se edito correctamente"
     
@@ -112,6 +131,10 @@ def eliminarCarro(request, pk):
     try:
         item = Carro.objects.get(pk = pk)
         item.delete()
+        id = item.id2
+        item = Producto.objects.get(pk = id)
+        item.stock = item.stock + 1
+        item.save()
         context['exito'] = "El item fue eliminado"
     except:
         context['error'] = "El item NO fue eliminado"
@@ -160,7 +183,11 @@ def Registro(request):
             direccion = request.POST['txtDireccion']
             contraseña = request.POST['txtContraseña']
             region = request.POST['cmbRegion']
-            imagen = request.FILES['txtImagen']
+            imagen1 = request.POST['txtImagen1']
+            try: 
+                imagen = request.FILES['txtImagen']
+            except:
+                imagen = ""
             if id== "0":
                 
                 Usuario.objects.create(
@@ -186,7 +213,10 @@ def Registro(request):
                 item.direccion = direccion
                 item.contraseña = contraseña
                 item.region=region
-                item.imagen=imagen
+                if imagen == "":
+                    item.imagen = imagen1
+                else:
+                    item.imagen = imagen
                 item.save()
                 context['exito'] = "Se edito correctamente"
     context['listado'] = Usuario.objects.all()
@@ -253,17 +283,65 @@ def busquedaCarro(request):
     
     productos = Producto.objects.all()
     context = {'productos': productos}
+    id = request.POST['txtId1']
     nombre = request.POST['txtNombre1']
     consola = request.POST['txtConsola1']
     precio = request.POST['txtPrecio1']
     imagen = request.POST['txtImagen1']
+    item = Producto.objects.get(pk = id)
+    item.stock = item.stock - 1
+    item.save()
     Carro.objects.create(
+                                    id2=id,
                                     nombre=nombre,
                                     consola=consola,
                                     precio=precio,
                                     imagen=imagen)
 
-    context['exito'] = "Se ha añadido al carrito!"
+    
     carro = Carro.objects.all()
     context = {'carro': carro}
     return render(request, 'carro.html', context)
+
+
+def eliminarCarroTodo(request):
+    for x in Carro.objects.all().iterator():
+        x.delete()
+    context = {'carro': carro}
+    context['exito'] = "La compra se ha hecho con exito!"
+    
+    context['listado'] = Carro.objects.all()
+    return render(request, 'carro.html', context)
+
+def producto(request, pk):
+    context = {}
+    
+    if request.method == 'POST':
+        print('HOLA')
+        item = Producto.objects.get(pk = pk)
+        id = item.id
+        nombre = item.nombre
+        consola = item.consola
+        precio = item.precio
+        imagen = item.imagen
+        item = Producto.objects.get(pk = id)
+        item.stock = item.stock - 1
+        item.save()
+        if 'btnGuardar' in request.POST:
+            
+            Carro.objects.create(
+                                    id2=id,
+                                    nombre=nombre,
+                                    consola=consola,
+                                    precio=precio,
+                                    imagen=imagen)
+
+            context['exito'] = "Se ha añadido al carrito!"
+    
+    context['productos'] = Producto.objects.all()
+    try:
+        context['item'] = Producto.objects.get(pk = pk)
+    except:
+        context['error'] = 'Error al buscar el registro'
+    return render(request, 'producto.html', context)
+
