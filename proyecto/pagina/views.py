@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from .models import Producto, Categoria, Carro, Usuario, TipoUsuario, FormaPago, Consola, UsuarioActual
+from .models import Producto, Categoria, Carro, Usuario, TipoUsuario, FormaPago, Consola
 # Create your views here.
 def menuPrincipal(request):
-    context={}
-    context['cuenta'] = UsuarioActual.objects.all()
-    context['cuentas'] = Usuario.objects.all()
-    return render(request, 'menuPrincipal.html', context)
+    context = {}
+    context['categorias'] = Categoria.objects.all()
+    return render(request, 'menuPrincipal.html')
 
 def Videojuegos(request):
     productos = Producto.objects.all()
@@ -59,6 +58,7 @@ def Accesorios(request):
 
 
 
+
 def admin(request):
     context = {}
     context['productos'] = Producto.objects.all()
@@ -85,34 +85,40 @@ def admin(request):
         if 'btnGuardar' in request.POST:
             consola = Consola.objects.get(nombre=consola) # buscar obj según id seleccionado
             categoria = Categoria.objects.get(pk=idCategoria) # buscar obj según id seleccionado
+            
             if id== "0":
-                
-                Producto.objects.create(
-                                        nombre=nombre,
-                                        categoria=categoria,
-                                        descripcion=descripcion,
-                                        consola=consola,
-                                        precio=precio,
-                                        stock=stock,
-                                        imagen=imagen)
+                    try:
+                        xd = Producto.objects.get(nombre=nombre)
+                        if xd.nombre == nombre:
+                            context['error'] = "No se puede repetir el nombre"
+                    except:
+                        
+                        Producto.objects.create(
+                                                nombre=nombre,
+                                                categoria=categoria,
+                                                descripcion=descripcion,
+                                                consola=consola,
+                                                precio=precio,
+                                                stock=stock,
+                                                imagen=imagen)
 
-                context['exito'] = "Los datos fueron guardados"
+                        context['exito'] = "Los datos fueron guardados"
             else:
-                item=Producto()
-                item.id = id
-                item.nombre = nombre
-                item.categoria = categoria
-                item.descripcion = descripcion
-                item.consola = consola
-                item.precio = precio
-                item.stock = stock
-                if imagen == "":
-                    item.imagen = imagen1
-                else:
-                    item.imagen = imagen
-                item.save()
-                context['exito'] = "Se edito correctamente"
-    
+                        item=Producto()
+                        item.id = id
+                        item.nombre = nombre
+                        item.categoria = categoria
+                        item.descripcion = descripcion
+                        item.consola = consola
+                        item.precio = precio
+                        item.stock = stock
+                        if imagen == "":
+                            item.imagen = imagen1
+                        else:
+                            item.imagen = imagen
+                        item.save()
+                        context['exito'] = "Se edito correctamente"
+            
     return render(request, 'admin.html', context)
 
 
@@ -182,12 +188,8 @@ def eliminarProducto(request, pk):
 def Registro(request):
     context = {}
     context['tipoUsuario'] = TipoUsuario.objects.all()
-    for x in UsuarioActual.objects.all().iterator():
-        x.delete()
     if request.method == 'POST':
         if 'btnGuardar' in request.POST:
-            context['exito'] = "Hola!"
-            print('HOLA')
             id = request.POST['txtId']
             nombre = request.POST['txtNombre']
             rut =  request.POST['txtRut']
@@ -204,47 +206,58 @@ def Registro(request):
             except:
                 imagen = ""
             tipoUsuario = TipoUsuario.objects.get(nombre=tipoUsuario) # buscar obj según id seleccionado
-            if id== "0":
-                
-                
-                Usuario.objects.create(
-                                        nombre=nombre,
-                                        rut=rut,
-                                        correo=correo,
-                                        telefono=telefono,
-                                        nacimiento=nacimiento,
-                                        direccion=direccion,
-                                        contraseña=contraseña,
-                                        region=region,
-                                        imagen=imagen,
-                                        tipoUsuario=tipoUsuario)
+            
+            if id=="0":
+                            try:
+                                xd = Usuario.objects.get(nombre=nombre)
+                                context['error'] = "No se puede repetir el nombre"
+                            except:
+                                try:
+                                    xd = Usuario.objects.get(rut=rut)
+                                    context['error'] = "No se puede repetir el rut"
+                                except:
+                                    try:
+                                        xd = Usuario.objects.get(correo=correo)
+                                        context['error'] = "No se puede repetir el correo"
+                                    except:                     
+                                            Usuario.objects.create(
+                                                                            nombre=nombre,
+                                                                            rut=rut,
+                                                                            correo=correo,
+                                                                            telefono=telefono,
+                                                                            nacimiento=nacimiento,
+                                                                            direccion=direccion,
+                                                                            contraseña=contraseña,
+                                                                            region=region,
+                                                                            imagen=imagen,
+                                                                            tipoUsuario=tipoUsuario)
 
-                context['exito'] = "La cuenta ha sido registrada"
+                                            context['exito'] = "La cuenta ha sido registrada"
             else:
-                item=Usuario()
-                item.id = id
-                item.nombre = nombre
-                item.rut = rut
-                item.correo = correo
-                item.telefono = telefono
-                item.nacimiento = nacimiento
-                item.direccion = direccion
-                item.contraseña = contraseña
-                item.region=region
-                item.tipoUsuario=tipoUsuario
-                if imagen == "":
-                    item.imagen = imagen1
-                else:
-                    item.imagen = imagen
-                item.save()
-                context['exito'] = "Se edito correctamente"
+                                    item=Usuario()
+                                    item.id = id
+                                    item.nombre = nombre
+                                    item.rut = rut
+                                    item.correo = correo
+                                    item.telefono = telefono
+                                    item.nacimiento = nacimiento
+                                    item.direccion = direccion
+                                    item.contraseña = contraseña
+                                    item.region=region
+                                    item.tipoUsuario=tipoUsuario
+                                    if imagen == "":
+                                        item.imagen = imagen1
+                                    else:
+                                        item.imagen = imagen
+                                    item.save()
+                                    context['exito'] = "Se edito correctamente" + item.id
     context['listado'] = Usuario.objects.all()
     return render(request, 'Registro.html', context)
 
 def Login(request):
     context = {}
+    context['listado'] = Usuario.objects.all()
     context['tipoUsuario'] = TipoUsuario.objects.all()
-    context['cuenta'] = UsuarioActual.objects.all()
     if request.method == 'POST':
         
             
@@ -254,14 +267,18 @@ def Login(request):
                 categoria = Usuario.objects.get(correo=correo)
                 if categoria.correo == correo:
                         if categoria.contraseña == contraseña:
-                            
-                            context['exito'] = 'Ha ingresado con exito'
-                            correo = request.POST['loginCorreo']
-                            context['item'] = Usuario.objects.get(correo=correo)
-                            UsuarioActual.objects.create(
-                                        correo=correo)
-                            return render(request, 'login.html', context)
-    
+                            x = categoria.tipoUsuario
+                            x = str(x)
+                            if x == "Admin":
+                                correo = request.POST['loginCorreo']
+                                context['item'] = Usuario.objects.get(correo=correo)
+                                return render(request, 'loginAdmin.html', context)
+                            else:
+                                context['exito'] = 'Ha ingresado con exito'
+                                correo = request.POST['loginCorreo']
+                                context['item'] = Usuario.objects.get(correo=correo)
+                                return render(request, 'login.html', context)
+        
 
 def buscarUsuario(request, pk):
     context = {}
@@ -294,6 +311,12 @@ def busqueda(request):
     
     return render(request, 'busqueda.html', context)
 
+def busquedaTodo(request):
+    productos = Producto.objects.all()
+    context = {'productos': productos}
+    context['nombre'] = ''
+    
+    return render(request, 'busqueda.html', context)
 
 def busquedaCarro(request):
     
@@ -316,9 +339,10 @@ def busquedaCarro(request):
                                     imagen=imagen)
 
     
-    carro = Carro.objects.all()
-    context = {'carro': carro}
-    return render(request, 'carro.html', context)
+    context = {'productos': productos}
+    context['nombre'] = ''
+    context['exito'] = "Se ha añadido al carrito!"
+    return render(request, 'busqueda.html', context)
 
 
 def eliminarCarroTodo(request):
@@ -373,20 +397,24 @@ def adminCategoria(request):
         nombre = request.POST['txtNombre']
         activo = request.POST['txtStock']
         if 'btnGuardar' in request.POST:
-            if id== "0":
-                Categoria.objects.create(
-                                        nombre=nombre,
-                                        activo=activo)
-
-                context['exito'] = "Los datos fueron guardados"
-            else:
-                item=Categoria()
-                item.id = id
-                item.nombre = nombre
-                item.activo = activo
-                item.save()
-                context['exito'] = "Se edito correctamente"
-    
+                    if id== "0":
+                        try:
+                            xd = Categoria.objects.get(nombre=nombre)
+                            if xd.nombre == nombre:
+                                context['error'] = "No se puede repetir el nombre"
+                        except:
+                            Categoria.objects.create(
+                                                    nombre=nombre,
+                                                    activo=activo)
+                            context['exito'] = "Los datos fueron guardados"
+                    else:
+                        item=Categoria()
+                        item.id = id
+                        item.nombre = nombre
+                        item.activo = activo
+                        item.save()
+                        context['exito'] = "Se edito correctamente"
+            
     return render(request, 'adminCategorias.html', context)
 def adminConsolas(request):
     context = {}
@@ -397,18 +425,23 @@ def adminConsolas(request):
         activo = request.POST['txtStock']
         if 'btnGuardar' in request.POST:
             if id== "0":
-                Consola.objects.create(
-                                        nombre=nombre,
-                                        activo=activo)
+                            try:
+                                xd = Consola.objects.get(nombre=nombre)
+                                if xd.nombre == nombre:
+                                    context['error'] = "No se puede repetir el nombre"
+                            except:
+                                Consola.objects.create(
+                                                        nombre=nombre,
+                                                        activo=activo)
 
-                context['exito'] = "Los datos fueron guardados"
+                                context['exito'] = "Los datos fueron guardados"
             else:
-                item=Consola()
-                item.id = id
-                item.nombre = nombre
-                item.activo = activo
-                item.save()
-                context['exito'] = "Se edito correctamente"
+                            item=Consola()
+                            item.id = id
+                            item.nombre = nombre
+                            item.activo = activo
+                            item.save()
+                            context['exito'] = "Se edito correctamente"
     
     return render(request, 'adminConsolas.html', context)
 def adminUsuario(request):
@@ -420,19 +453,24 @@ def adminUsuario(request):
         activo = request.POST['txtStock']
         if 'btnGuardar' in request.POST:
             if id== "0":
-                TipoUsuario.objects.create(
-                                        nombre=nombre,
-                                        activo=activo)
+                try:
+                    xd = TipoUsuario.objects.get(nombre=nombre)
+                    if xd.nombre == nombre:
+                        context['error'] = "No se puede repetir el nombre"
+                except:   
+                    TipoUsuario.objects.create(
+                                            nombre=nombre,
+                                            activo=activo)
 
-                context['exito'] = "Los datos fueron guardados"
+                    context['exito'] = "Los datos fueron guardados"
             else:
-                item=TipoUsuario()
-                item.id = id
-                item.nombre = nombre
-                item.activo = activo
-                item.save()
-                context['exito'] = "Se edito correctamente"
-    
+                    item=TipoUsuario()
+                    item.id = id
+                    item.nombre = nombre
+                    item.activo = activo
+                    item.save()
+                    context['exito'] = "Se edito correctamente"
+        
     return render(request, 'adminUsuario.html', context)
 def adminPago(request):
     context = {}
@@ -442,20 +480,25 @@ def adminPago(request):
         nombre = request.POST['txtNombre']
         activo = request.POST['txtStock']
         if 'btnGuardar' in request.POST:
-            if id== "0":
-                FormaPago.objects.create(
-                                        nombre=nombre,
-                                        activo=activo)
+                    if id== "0":
+                        try:
+                            xd = FormaPago.objects.get(nombre=nombre)
+                            if xd.nombre == nombre:
+                                context['error'] = "No se puede repetir el nombre"
+                        except:
+                            FormaPago.objects.create(
+                                                    nombre=nombre,
+                                                    activo=activo)
 
-                context['exito'] = "Los datos fueron guardados"
-            else:
-                item=FormaPago()
-                item.id = id
-                item.nombre = nombre
-                item.activo = activo
-                item.save()
-                context['exito'] = "Se edito correctamente"
-    
+                            context['exito'] = "Los datos fueron guardados"
+                    else:
+                            item=FormaPago()
+                            item.id = id
+                            item.nombre = nombre
+                            item.activo = activo
+                            item.save()
+                            context['exito'] = "Se edito correctamente"
+            
     return render(request, 'adminPago.html', context)
 
 def buscarPago(request, pk):
@@ -480,9 +523,9 @@ def buscarConsola(request, pk):
 
 def buscarTipoUsuario(request, pk):
     context = {}
-    context['productos'] = Usuario.objects.all()
+    context['productos'] = TipoUsuario.objects.all()
     try:
-        context['item'] = FormaPago.objects.get(pk = pk)
+        context['item'] = TipoUsuario.objects.get(pk = pk)
     except:
         context['error'] = 'Error al buscar el registro'
 
@@ -490,9 +533,9 @@ def buscarTipoUsuario(request, pk):
 
 def buscarCategoria(request, pk):
     context = {}
-    context['productos'] = FormaPago.objects.all()
+    context['productos'] = Categoria.objects.all()
     try:
-        context['item'] = FormaPago.objects.get(pk = pk)
+        context['item'] = Categoria.objects.get(pk = pk)
     except:
         context['error'] = 'Error al buscar el registro'
 

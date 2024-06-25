@@ -32,13 +32,13 @@ class Carro(models.Model):
         return self.nombre
     
 class Categoria(models.Model):
-    nombre = models.CharField(max_length=100, unique=True)
+    nombre = models.CharField(max_length=100)
     activo = models.IntegerField(default=1)
     def __str__(self):
         return self.nombre
     
 class Usuario(models.Model):
-    nombre      = models.CharField(max_length=100, unique=True)
+    nombre      = models.CharField(max_length=100)
     rut   = models.CharField(max_length=30)
     correo  = models.CharField(max_length=500)
     telefono   = models.CharField(max_length=50)
@@ -53,35 +53,21 @@ class Usuario(models.Model):
         return self.nombre
 
 class Consola(models.Model):
-    nombre = models.CharField(max_length=100, unique=True)
+    nombre = models.CharField(max_length=100)
     activo = models.IntegerField()
 
     def __str__(self):
         return self.nombre
 
 class TipoUsuario(models.Model):
-    nombre = models.CharField(max_length=100, unique=True)
+    nombre = models.CharField(max_length=100)
     activo = models.IntegerField()
     def __str__(self):
         return self.nombre
 
 class FormaPago(models.Model):
-    nombre = models.CharField(max_length=100, unique=True)
+    nombre = models.CharField(max_length=100)
     activo = models.IntegerField()
     def __str__(self):
         return self.nombre
     
-class UsuarioActual(models.Model):
-    nombre      = models.CharField(max_length=100, unique=True)
-    rut   = models.CharField(max_length=30)
-    correo  = models.CharField(max_length=500)
-    telefono   = models.CharField(max_length=50)
-    nacimiento   = models.CharField(max_length=50)
-    direccion      = models.CharField(max_length=300)
-    contraseña = models.CharField(max_length=100)
-    region = models.CharField(max_length=100)
-    imagen = models.FileField(upload_to='imagenes/', default='Images/juego6.jpg')
-    tipoUsuario   = models.ForeignKey('tipoUsuario', on_delete=models.CASCADE, default=1)
-
-    def __str__(self):
-        return self.nombre

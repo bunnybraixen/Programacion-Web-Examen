@@ -1,0 +1,86 @@
+{% extends "plantillaBase.html"  %}
+{% block tituloPestana %} Menu Principal {% endblock %}
+{% block tituloPrincipal %} {% endblock %}
+{% block mensaje %}
+{% endblock %}
+{% block contenido %}
+{% load static %}
+    <div>
+                    <div class="container mt-5 justify-content-center">
+                        <div class="row">
+                <div>
+                  <div class="justify-content-center text-center">
+                    <h1>Ha ingresado correctamente como Admin, bienvenido {{item.nombre}} </h1>
+                    <a href="{% url 'menuPrincipal' %}">
+                    <input type="button" name="btnEnviar" class="btnEnviar" value="Cerrar Sesion" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+                    </a>
+                    <a href="{% url 'adminPago' %}">
+                    <button name="btnGuardar" value="Admin Tipo Pagos" class="btn btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">Admin Tipo Pagos</button>
+                </a>
+                <a href="{% url 'admin' %}">
+                    <button name="btnGuardar" value="Admin Productos" class="btn btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">Admin Productos</button>
+                </a>
+                <a href="{% url 'adminUsuario' %}">
+                    <button name="btnGuardar" value="Admin Tipo Usuarios" class="btn btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">Admin Tipo Usuarios</button>
+                </a>
+                    <a href="{% url 'adminCategoria' %}">
+                    <button name="btnGuardar" value="Admin Categorias" class="btn btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">Admin Categorias</button>
+                </a>
+                <a href="{% url 'adminConsolas' %}">
+                    <button name="btnGuardar" value="Admin Consolas" class="btn btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">Admin Consolas</button>
+                </a>
+                    <p>Correo: {{item.correo}}</p>
+                    <p>Rut: {{item.rut}}</p>
+                    <p>Telefono: {{item.telefono}}</p>
+                    <p>Fecha de Nacimiento: {{item.nacimiento}}</p>
+                    <p>Direccion: {{item.direccion}}</p>
+                    <p>Region: {{item.region}}</p>
+                    <p>Tipo: {{item.tipoUsuario}}</p>
+                    
+                    <p>Imagen:</p>
+                    <img src="static/{{item.imagen}}" class="card-img-top img-fluid" alt="...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+{% endblock %}
+{% block listado %}
+<div class="row">
+    <div class="col-12">
+        <table class="table table-responsive">
+            <tr>
+                <th>URL Imagen</th>
+                <th>Tipo</th>
+                <th>Email</th>
+                <th>Nombre</th>
+                <th>Rut</th>
+                <th>Direccion</th>
+                <th>Region</th>
+                <th>Telefono</th>
+                <th>Fecha Nacimiento</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
+            </tr>
+  {% for usuario in listado %}
+            <tr>
+                <td>{{usuario.imagen}}</td>
+                <td>{{usuario.tipoUsuario}}</td>
+                <td>{{usuario.correo}}</td>
+                <td>{{usuario.nombre}}</td>
+                <td>{{usuario.rut}}</td>
+                <td>{{usuario.direccion}}</td>
+                <td>{{usuario.region}}</td>
+                <td>{{usuario.telefono}}</td>
+                <td>{{usuario.nacimiento}}</td>
+                <td><a href="{% url 'buscarUsuario' pk=usuario.pk %}">Modificar</a></td>
+                <td><a href="{% url 'eliminarUsuario' pk=usuario.pk %}" class="btn btn-danger">Eliminar</a></td>
+            </tr>
+  {% endfor %}
+        </table>
+    </div>
+  </div>
+{% endblock %}

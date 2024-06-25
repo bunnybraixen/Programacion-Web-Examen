@@ -230,36 +230,4 @@
 </html>
 {% endblock %}
 {% block listado %}
-<div class="row">
-  <div class="col-12">
-      <table class="table table-responsive">
-          <tr>
-              <th>URL Imagen</th>
-              <th>Email</th>
-              <th>Nombre</th>
-              <th>Rut</th>
-              <th>Direccion</th>
-              <th>Region</th>
-              <th>Telefono</th>
-              <th>Fecha Nacimiento</th>
-              <th>Modificar</th>
-              <th>Eliminar</th>
-          </tr>
-{% for usuario in listado %}
-          <tr>
-              <td>{{usuario.imagen}}</td>
-              <td>{{usuario.correo}}</td>
-              <td>{{usuario.nombre}}</td>
-              <td>{{usuario.rut}}</td>
-              <td>{{usuario.direccion}}</td>
-              <td>{{usuario.region}}</td>
-              <td>{{usuario.telefono}}</td>
-              <td>{{usuario.nacimiento}}</td>
-              <td><a href="{% url 'buscarUsuario' pk=usuario.pk %}">Modificar</a></td>
-              <td><a href="{% url 'eliminarUsuario' pk=usuario.pk %}" class="btn btn-danger">Eliminar</a></td>
-          </tr>
-{% endfor %}
-      </table>
-  </div>
-</div>
 {% endblock %}

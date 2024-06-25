@@ -12,7 +12,7 @@ urlpatterns = [
     path('Videojuegos', views.Videojuegos, name='Videojuegos'), 
     path('Accesorios', views.Accesorios, name='Accesorios'), 
     path('Registro', views.Registro, name='Registro'), 
-    path('Login', views.Login, name='Login'), 
+    path('Login', views.Login, name='Login'),
     path('Contacto', views.Contacto, name='Contacto'), 
     path('carro', views.carro, name='carro'),
     path('carro <str:pk>', views.eliminarCarro, name='eliminarCarro'), 
@@ -31,5 +31,6 @@ urlpatterns = [
     path('busqueda', views.busqueda, name='busqueda'),
     path('busquedaCarro', views.busquedaCarro, name='busquedaCarro'),
     path('eliminarCarroTodo', views.eliminarCarroTodo, name='eliminarCarroTodo'),
-    path('producto <str:pk>', views.producto, name='producto')
+    path('producto <str:pk>', views.producto, name='producto'),
+    path('busquedaTodo', views.busquedaTodo, name='busqueda'),
     ]
