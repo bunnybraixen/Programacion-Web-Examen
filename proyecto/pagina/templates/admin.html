@@ -46,7 +46,9 @@
               <select name="cmbCategoria" class="txtCategoria form-select form-select-md mb-3" aria-label=".form-select-md example" style="color: white; background-color: #121212; border-color: cyan;">
                 <option value=0 selected>Seleccione una categoria...</option>
                 {% for objecto in categoria %}
+                {% if objecto.activo == 1 %}
                 <option value="{{objecto.pk}}" {% if objecto.id == item.categoria.id %}selected {% endif %}>{{objecto.nombre}}</option>
+                {% endif %}
                 {% endfor%}
               </select>
             </div>
@@ -77,13 +79,20 @@
 
               </div>
 
-            <div class="form-group mb-4">
-              <label for="exampleInputEmail1">
-                Consola
-              </label>
-              <input type="text" name="txtConsola" class="txtConsola form-control" id="exampleInputEmail1" value="{{item.consola}}" placeholder="ej: 'PS5'" style="color: white; background-color: #121212; border-color: cyan;"/>
-            </div>
 
+              <div class="form-group mb-4">
+                <label for="exampleInputEmail1">
+                  Consola<br>
+                </label>
+                <select name="txtConsola" class="txtConsola form-select form-select-md mb-3" aria-label=".form-select-md example" style="color: white; background-color: #121212; border-color: cyan;">
+                  <option value=0 selected>Seleccione una consola...</option>
+                  {% for objecto in consola %}
+                  {% if objecto.activo == 1 %}
+                  <option value="{{objecto.nombre}}" {% if objecto.id == item.consola.id %}selected {% endif %}>{{objecto.nombre}}</option>
+                  {% endif %}
+                  {% endfor%}
+                </select>
+              </div>
 
             <div class="form-group mb-4">
               <label for="exampleInputEmail1">

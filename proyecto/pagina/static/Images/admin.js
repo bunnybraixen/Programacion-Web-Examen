@@ -73,12 +73,6 @@ alert('La descripcion ingresado no es valido, debe ser mayor a 50 y menor a 1000
 
 
 
-else if(!(/^.{3,15}$/.test($('.txtConsola').val())))
-{
-alert('La consola ingresada no es valido, debe ser mayor a 3 y menor a 15 caracteres')
-}
-
-
 else if( $('.txtImagen').val() == "")
     {
         if( $('.txtImagen2').val() == 'undefined') {

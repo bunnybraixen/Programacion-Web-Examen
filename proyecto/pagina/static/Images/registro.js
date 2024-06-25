@@ -64,6 +64,16 @@ $(function(){
         alert('No especifico la clave')
        }
 
+       else if( $('.txtTipo').val() == "")
+        {
+         alert('No especifico la clave')
+        }
+        else if( $('.txtTipo').val() == "0")
+            {
+             alert('No especifico la clave')
+            }
+ 
+
        else if( $('.txtUsuario').val() == "")
        {
         alert('No especifico el usuario')

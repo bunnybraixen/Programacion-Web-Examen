@@ -1,0 +1,110 @@
+{% extends "plantillaBase.html"  %}
+{% block tituloPestana %} Menu Principal {% endblock %}
+{% block tituloPrincipal %} {% endblock %}
+{% block mensaje %}
+{% if exito %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{exito}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+{% if error %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{error}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+{% endblock %}
+{% block contenido %}
+{% load static %}
+
+<form class="form" method="post" enctype="multipart/form-data" action="{% url 'adminPago' %}" >
+  {% csrf_token %}
+  <script src="{% static 'Images/admin2.js' %}"></script>
+    <!--signin-->
+    
+      
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+
+        <!--signin-->
+        <div class="col-10 col-md-4 mt-5">
+
+            <div class="form-group mb-4">
+               <h2>Ingresar producto</h2>
+              <label for="exampleInputEmail1">
+                Nombre
+              </label>
+              <input type="hidden" name="txtId" value="0{{item.id}}">
+              <input type="text" name="txtNombre" class="txtNombre form-control" value="{{item.nombre}}" placeholder="ej: 'Fallout 2'" style="color: white; background-color: #121212; border-color: cyan; "/>
+            </div>
+        </div>
+
+
+        <!--registro-->
+        <div class="col-10 col-md-4 m-4 mb-5 mt-md-5 ">
+            
+            <div class="form-group mb-4">
+              <b></b>
+              <h2><br></h2>
+              <label for="exampleInputEmail1">
+                Activo
+              </label>
+
+              <input name="txtStock" min="0" value="{{item.activo}}"  type="number"
+                  class="txtStock form-control form-control" style="color: white; background-color: #121212; border-color: cyan;" />
+
+              </div>
+
+            <input type="button" name="btnEnviar" class="btnEnviar" value="Guardar" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+          </input>
+
+            
+              
+
+         
+        </div>
+      </div>
+   
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content" style="color: white; background-color: #121212;">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5"  id="exampleModalLabel">Añadir al carrito</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" >
+            ¿Seguro que desea añadir al carrito?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <input type="submit" name="btnGuardar" value="Guardar" class="btn btn-primary" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+          </input>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </form>
+
+ 
+
+{% endblock %}
+{% block listado %}
+    <table class="table table-responsive table-striped">
+        <tr>
+            <th>Nombre</th>
+            <th>Activo</th>
+            <th>Modificar</th>
+            <th>Eliminar</th>
+        </tr>
+    {% for item in productos %}
+        <tr>
+            <td>{{ item.nombre| capfirst }}</td>
+            <td>{{ item.activo }}</td>
+            <td><a href="{% url 'buscarPago' pk=item.id %}" class="btn btn-warning">Modificar</a></td>
+            <td><a href="{% url 'eliminarPago' pk=item.id %}" class="btn btn-danger">Eliminar</a></td>
+    {% endfor %}
+    </table>
+{% endblock %}

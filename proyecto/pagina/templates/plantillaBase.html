@@ -148,13 +148,35 @@
                 <a class="nav-link active" style="color: white;" aria-current="page" href="menuPrincipal">Home</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" style="color: white;" href="Registro">{{cuenta.id}}</a>
+              </li>
+              {% if cuenta.objects.count() > 1 %}
+              <li class="nav-item">
+                <a class="nav-link" style="color: white;" href="Registro">Cuenta</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
                 <a class="nav-link" style="color: white;" href="Registro">Registro</a>
               </li>
+              {% endif %}
               <li class="nav-item">
                 <a class="nav-link" style="color: white;" href="Contacto">Contacto</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" style="color: white;" href="admin">Admin</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" style="color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Admin
+                </a>
+                <ul class="dropdown-menu" style="background-color: #121212;">
+                  <li><a class="dropdown-item" style="color: white;" href="admin">Productos</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" style="color: white;" href="adminCategoria">Categorias</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" style="color: white;" href="adminConsolas">Consolas</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" style="color: white;" href="adminUsuario">Tipos Usuarios</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" style="color: white;" href="adminPago">Forma Pago</a></li>
+                </ul>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" style="color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

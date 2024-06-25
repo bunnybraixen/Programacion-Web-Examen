@@ -136,22 +136,22 @@
               </label>
               <select name="cmbRegion" value="{{item.region}}"  class="txtRegion form-select form-select-md mb-3" aria-label=".form-select-md example" style="color: white; background-color: #121212; border-color: cyan;">
                 <option selected>Seleccione una region...</option>
-                <option value="Arica">Arica</option>
-                <option value="Tarapaca">Tarapaca</option>
-                <option value="Antofagasta">Antofagasta</option>
-                <option value="Atacama">Atacama</option>
-                <option value="Coquimbo">Coquimbo</option>
-                <option value="Valparaiso">Valparaiso</option>
-                <option value="Metropolitana">Metropolitana</option>
-                <option value="O'Higgins">O'Higgins</option>
-                <option value="Maule">Maule</option>
-                <option value="Ñuble">Ñuble</option>
-                <option value="Biobio">Biobio</option>
-                <option value="Araucania">Araucania</option>
-                <option value="Los Rios">Los Rios</option>
-                <option value="Los Lagos">Los Lagos</option>
-                <option value="Aysen">Aysen</option>
-                <option value="Magallanes">Magallanes</option>
+                <option value="Arica" {% if "Arica" == item.region %}selected {% endif %}>Arica</option>
+                <option value="Tarapaca"{% if "Tarapaca" == item.region %}selected {% endif %}>Tarapaca</option>
+                <option value="Antofagasta"{% if "Antofagasta" == item.region %}selected {% endif %}>Antofagasta</option>
+                <option value="Atacama"{% if "Atacama" == item.region %}selected {% endif %}>Atacama</option>
+                <option value="Coquimbo"{% if "Coquimbo" == item.region %}selected {% endif %}>Coquimbo</option>
+                <option value="Valparaiso"{% if "Valparaiso" == item.region %}selected {% endif %}>Valparaiso</option>
+                <option value="Metropolitana"{% if "Metropolitana" == item.region %}selected {% endif %}>Metropolitana</option>
+                <option value="O'Higgins"{% if "O'Higgins" == item.region %}selected {% endif %}>O'Higgins</option>
+                <option value="Maule"{% if "Maule" == item.region %}selected {% endif %}>Maule</option>
+                <option value="Ñuble"{% if "Ñuble" == item.region %}selected {% endif %}>Ñuble</option>
+                <option value="Biobio"{% if "Biobio" == item.region %}selected {% endif %}>Biobio</option>
+                <option value="Araucania"{% if "Araucania" == item.region %}selected {% endif %}>Araucania</option>
+                <option value="Los Rios"{% if "Los Rios" == item.region %}selected {% endif %}>Los Rios</option>
+                <option value="Los Lagos" {% if "Los Lagos" == item.region %}selected {% endif %}>Los Lagos</option>
+                <option value="Aysen" {% if "Aysen" == item.region %}selected {% endif %}>Aysen</option>
+                <option value="Magallanes"{% if "Magallanes" == item.region %}selected {% endif %}>Magallanes</option>
               </select>
             </div>
             
@@ -169,6 +169,18 @@
               </label>
               <input type="password" class="txtClaveVer form-control" id="txtClave" style="color: white; background-color: #121212; border-color: cyan;"/>
             </div>
+
+            <div class="form-group mb-4">
+              <label for="exampleInputEmail1">
+                Tipo de Usuario<br>
+              </label>
+              <select name="txtTipo" class="txtTipo form-select form-select-md mb-3" aria-label=".form-select-md example" style="color: white; background-color: #121212; border-color: cyan;">
+                <option value=0 selected>Seleccione un tipo...</option>
+                {% for objecto in tipoUsuario %}
+                <option value="{{objecto.nombre}}" {% if objecto.id == item.tipoUsuario.id %}selected {% endif %}>{{objecto.nombre}}</option>
+                {% endfor%}
+              </select>
+            </div>
             
             <div class="form-group mb-4">
               <label for="exampleFormControlFile1">Imagen de usuario (Opcional) </label>
@@ -182,7 +194,7 @@
               </label>
             </div> 
 
-            <input type="button" name="btnEnviar" class="btnEnviar" value="Registrarme" style="color: white; background-color: cyan; color: purple; border-color: purple;">
+            <input type="button" name="btnEnviar" href="Registro" class="btnEnviar" value="Registrarme" style="color: white; background-color: cyan; color: purple; border-color: purple;">
           </input>
 
         </div>

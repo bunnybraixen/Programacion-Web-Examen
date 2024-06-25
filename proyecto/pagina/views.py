@@ -1,8 +1,11 @@
 from django.shortcuts import render
-from .models import Producto, Categoria, Carro, Usuario
+from .models import Producto, Categoria, Carro, Usuario, TipoUsuario, FormaPago, Consola, UsuarioActual
 # Create your views here.
 def menuPrincipal(request):
-    return render(request, 'menuPrincipal.html')
+    context={}
+    context['cuenta'] = UsuarioActual.objects.all()
+    context['cuentas'] = Usuario.objects.all()
+    return render(request, 'menuPrincipal.html', context)
 
 def Videojuegos(request):
     productos = Producto.objects.all()
@@ -60,6 +63,7 @@ def admin(request):
     context = {}
     context['productos'] = Producto.objects.all()
     context['categoria'] = Categoria.objects.all()
+    context['consola'] = Consola.objects.all()
     if request.method == 'POST':
         context['exito'] = "Hola!"
         print('HOLA')
@@ -79,6 +83,7 @@ def admin(request):
         
             
         if 'btnGuardar' in request.POST:
+            consola = Consola.objects.get(nombre=consola) # buscar obj según id seleccionado
             categoria = Categoria.objects.get(pk=idCategoria) # buscar obj según id seleccionado
             if id== "0":
                 
@@ -112,7 +117,9 @@ def admin(request):
 
 
 def Registro(request):
-    return render(request, 'Registro.html')
+    context = {}
+    context['tipoUsuario'] = TipoUsuario.objects.all()
+    return render(request, 'Registro.html', context)
 
 def Contacto(request):
     return render(request, 'Contacto.html')
@@ -122,12 +129,14 @@ def Contacto(request):
 def carro(request):
     carro = Carro.objects.all()
     context = {'carro': carro}
+    context['pago'] = FormaPago.objects.all()
     return render(request, 'carro.html', context)
 
 
 def eliminarCarro(request, pk):
     carro = Carro.objects.all()
     context = {'carro': carro}
+    context['pago'] = FormaPago.objects.all()
     try:
         item = Carro.objects.get(pk = pk)
         item.delete()
@@ -144,6 +153,7 @@ def eliminarCarro(request, pk):
 
 def buscarProducto(request, pk):
     context = {}
+    context['consola'] = Consola.objects.all()
     context['productos'] = Producto.objects.all()
     context['categoria'] = Categoria.objects.all()
     try:
@@ -154,9 +164,10 @@ def buscarProducto(request, pk):
 
     return render(request, 'admin.html', context)
 
-def eliminarProducto(request, pk):
+def eliminarProducto(request, pk): 
     productos = Producto.objects.all()
     context = {'producto': productos}
+    context['consola'] = Consola.objects.all()
     try:
         item = Producto.objects.get(pk = pk)
         item.delete()
@@ -170,6 +181,9 @@ def eliminarProducto(request, pk):
 
 def Registro(request):
     context = {}
+    context['tipoUsuario'] = TipoUsuario.objects.all()
+    for x in UsuarioActual.objects.all().iterator():
+        x.delete()
     if request.method == 'POST':
         if 'btnGuardar' in request.POST:
             context['exito'] = "Hola!"
@@ -183,12 +197,15 @@ def Registro(request):
             direccion = request.POST['txtDireccion']
             contraseña = request.POST['txtContraseña']
             region = request.POST['cmbRegion']
+            tipoUsuario = request.POST['txtTipo']
             imagen1 = request.POST['txtImagen1']
             try: 
                 imagen = request.FILES['txtImagen']
             except:
                 imagen = ""
+            tipoUsuario = TipoUsuario.objects.get(nombre=tipoUsuario) # buscar obj según id seleccionado
             if id== "0":
+                
                 
                 Usuario.objects.create(
                                         nombre=nombre,
@@ -199,7 +216,8 @@ def Registro(request):
                                         direccion=direccion,
                                         contraseña=contraseña,
                                         region=region,
-                                        imagen=imagen)
+                                        imagen=imagen,
+                                        tipoUsuario=tipoUsuario)
 
                 context['exito'] = "La cuenta ha sido registrada"
             else:
@@ -213,6 +231,7 @@ def Registro(request):
                 item.direccion = direccion
                 item.contraseña = contraseña
                 item.region=region
+                item.tipoUsuario=tipoUsuario
                 if imagen == "":
                     item.imagen = imagen1
                 else:
@@ -224,33 +243,29 @@ def Registro(request):
 
 def Login(request):
     context = {}
+    context['tipoUsuario'] = TipoUsuario.objects.all()
+    context['cuenta'] = UsuarioActual.objects.all()
     if request.method == 'POST':
         
             
         if 'btnGuardar1' in request.POST:
                 correo = request.POST['loginCorreo']
                 contraseña = request.POST['loginClave']
-                try: 
-                    categoria = Usuario.objects.get(correo=correo)
-                    if categoria.correo == correo:
+                categoria = Usuario.objects.get(correo=correo)
+                if categoria.correo == correo:
                         if categoria.contraseña == contraseña:
-                            context['item'] = Usuario.objects.get(correo=correo)
+                            
                             context['exito'] = 'Ha ingresado con exito'
+                            correo = request.POST['loginCorreo']
+                            context['item'] = Usuario.objects.get(correo=correo)
+                            UsuarioActual.objects.create(
+                                        correo=correo)
                             return render(request, 'login.html', context)
-                        else:
-                            context['error'] = 'La contraseña ingresada no coincide con la registrada'
-                            return render(request, 'Registro.html', context)
-                    else:
-                        context['error'] = 'El usuario ingresado no coincide con ninguno en la base de datos'
-                        return render(request, 'Registro.html', context)
-                except:
-                    context['error'] = 'El usuario ingresado no coincide con ninguno en la base de datos'
-                    context['listado'] = Usuario.objects.all()
-                    return render(request, 'Registro.html', context)
     
 
 def buscarUsuario(request, pk):
     context = {}
+    context['tipoUsuario'] = TipoUsuario.objects.all()
     try:
         context['item'] = Usuario.objects.get(pk=pk)
     except:
@@ -261,6 +276,7 @@ def buscarUsuario(request, pk):
 
 def eliminarUsuario(request, pk):
     context = {}
+    context['tipoUsuario'] = TipoUsuario.objects.all()
     try:
         item = Usuario.objects.get(pk = pk)
         item.delete()
@@ -283,6 +299,7 @@ def busquedaCarro(request):
     
     productos = Producto.objects.all()
     context = {'productos': productos}
+    context['pago'] = FormaPago.objects.all()
     id = request.POST['txtId1']
     nombre = request.POST['txtNombre1']
     consola = request.POST['txtConsola1']
@@ -308,6 +325,7 @@ def eliminarCarroTodo(request):
     for x in Carro.objects.all().iterator():
         x.delete()
     context = {'carro': carro}
+    context['pago'] = FormaPago.objects.all()
     context['exito'] = "La compra se ha hecho con exito!"
     
     context['listado'] = Carro.objects.all()
@@ -345,3 +363,182 @@ def producto(request, pk):
         context['error'] = 'Error al buscar el registro'
     return render(request, 'producto.html', context)
 
+
+
+def adminCategoria(request):
+    context = {}
+    context['productos'] = Categoria.objects.all()
+    if request.method == 'POST':
+        id = request.POST['txtId']
+        nombre = request.POST['txtNombre']
+        activo = request.POST['txtStock']
+        if 'btnGuardar' in request.POST:
+            if id== "0":
+                Categoria.objects.create(
+                                        nombre=nombre,
+                                        activo=activo)
+
+                context['exito'] = "Los datos fueron guardados"
+            else:
+                item=Categoria()
+                item.id = id
+                item.nombre = nombre
+                item.activo = activo
+                item.save()
+                context['exito'] = "Se edito correctamente"
+    
+    return render(request, 'adminCategorias.html', context)
+def adminConsolas(request):
+    context = {}
+    context['productos'] = Consola.objects.all()
+    if request.method == 'POST':
+        id = request.POST['txtId']
+        nombre = request.POST['txtNombre']
+        activo = request.POST['txtStock']
+        if 'btnGuardar' in request.POST:
+            if id== "0":
+                Consola.objects.create(
+                                        nombre=nombre,
+                                        activo=activo)
+
+                context['exito'] = "Los datos fueron guardados"
+            else:
+                item=Consola()
+                item.id = id
+                item.nombre = nombre
+                item.activo = activo
+                item.save()
+                context['exito'] = "Se edito correctamente"
+    
+    return render(request, 'adminConsolas.html', context)
+def adminUsuario(request):
+    context = {}
+    context['productos'] = TipoUsuario.objects.all()
+    if request.method == 'POST':
+        id = request.POST['txtId']
+        nombre = request.POST['txtNombre']
+        activo = request.POST['txtStock']
+        if 'btnGuardar' in request.POST:
+            if id== "0":
+                TipoUsuario.objects.create(
+                                        nombre=nombre,
+                                        activo=activo)
+
+                context['exito'] = "Los datos fueron guardados"
+            else:
+                item=TipoUsuario()
+                item.id = id
+                item.nombre = nombre
+                item.activo = activo
+                item.save()
+                context['exito'] = "Se edito correctamente"
+    
+    return render(request, 'adminUsuario.html', context)
+def adminPago(request):
+    context = {}
+    context['productos'] = FormaPago.objects.all()
+    if request.method == 'POST':
+        id = request.POST['txtId']
+        nombre = request.POST['txtNombre']
+        activo = request.POST['txtStock']
+        if 'btnGuardar' in request.POST:
+            if id== "0":
+                FormaPago.objects.create(
+                                        nombre=nombre,
+                                        activo=activo)
+
+                context['exito'] = "Los datos fueron guardados"
+            else:
+                item=FormaPago()
+                item.id = id
+                item.nombre = nombre
+                item.activo = activo
+                item.save()
+                context['exito'] = "Se edito correctamente"
+    
+    return render(request, 'adminPago.html', context)
+
+def buscarPago(request, pk):
+    context = {}
+    context['productos'] = FormaPago.objects.all()
+    try:
+        context['item'] = FormaPago.objects.get(pk = pk)
+    except:
+        context['error'] = 'Error al buscar el registro'
+
+    return render(request, 'adminPago.html', context)
+
+def buscarConsola(request, pk):
+    context = {}
+    context['productos'] = Consola.objects.all()
+    try:
+        context['item'] = Consola.objects.get(pk = pk)
+    except:
+        context['error'] = 'Error al buscar el registro'
+
+    return render(request, 'adminConsolas.html', context)
+
+def buscarTipoUsuario(request, pk):
+    context = {}
+    context['productos'] = Usuario.objects.all()
+    try:
+        context['item'] = FormaPago.objects.get(pk = pk)
+    except:
+        context['error'] = 'Error al buscar el registro'
+
+    return render(request, 'adminUsuario.html', context)
+
+def buscarCategoria(request, pk):
+    context = {}
+    context['productos'] = FormaPago.objects.all()
+    try:
+        context['item'] = FormaPago.objects.get(pk = pk)
+    except:
+        context['error'] = 'Error al buscar el registro'
+
+    return render(request, 'adminCategorias.html', context)
+
+def eliminarCategoria(request, pk):
+    context = {}
+    try:
+        item = Categoria.objects.get(pk = pk)
+        item.delete()
+        context['exito'] = "El item fue eliminado"
+    except:
+        context['error'] = "El item NO fue eliminado"
+
+    context['productos'] = Categoria.objects.all()
+    return render(request, 'adminCategorias.html', context)
+def eliminarConsola(request, pk):
+    context = {}
+    try:
+        item = Consola.objects.get(pk = pk)
+        item.delete()
+        context['exito'] = "El item fue eliminado"
+    except:
+        context['error'] = "El item NO fue eliminado"
+
+    context['productos'] = Consola.objects.all()
+    return render(request, 'adminConsolas.html', context)
+def eliminarPago(request, pk):
+    context = {}
+    try:
+        item = FormaPago.objects.get(pk = pk)
+        item.delete()
+        context['exito'] = "El item fue eliminado"
+    except:
+        context['error'] = "El item NO fue eliminado"
+
+    context['productos'] = FormaPago.objects.all()
+    return render(request, 'adminPago.html', context)
+def eliminarTipoUsuario(request, pk):
+    context = {}
+    try:
+        item = TipoUsuario.objects.get(pk = pk)
+        item.delete()
+        context['exito'] = "El item fue eliminado"
+    except:
+        context['error'] = "El item NO fue eliminado"
+
+    context['productos'] = TipoUsuario.objects.all()
+    return render(request, 'adminUsuario.html', context)
